@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ================= BASIC SEO ================= -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | Bright Future Academy</title>
+
+    <meta name="description"
+        content="Contact Bright Future Academy for admissions, educational programs, learning services and general enquiries.">
+
+    <meta name="keywords"
+        content="Bright Future Academy contact, school admission enquiry, educational programs, school location">
+
+    <meta name="author" content="Bright Future Academy">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#5969c7">
+
+    <!-- ================= OPEN GRAPH ================= -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Bright Future Academy">
+    <meta property="og:locale" content="en_IN">
+
+    <meta property="og:title" content="Contact Us | Bright Future Academy">
+
+    <meta property="og:description"
+        content="Get in touch with Bright Future Academy for admissions and general enquiries.">
+
+    <!-- ================= TWITTER ================= -->
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Bright Future Academy">
+    <meta name="twitter:description" content="Contact our academy for educational programs and admission enquiries.">
+
+    <!-- ================= GOOGLE FONTS ================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ================= ICONS ================= -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- ================= COMMON CSS ================= -->
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- =====================================================
+         CONTACT PAGE CSS
+         Existing common CSS is not repeated.
+    ====================================================== -->
+
+    <style>
+        /* ================= CONTACT CARDS ================= */
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .contact-info-card {
+            padding: 35px 25px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-align: center;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .contact-info-icon {
+            width: 68px;
+            height: 68px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 22px;
+            border-radius: 42% 58% 48% 52%;
+            background: #e9e5ff;
+            color: var(--primary);
+            font-size: 25px;
+        }
+
+        .contact-info-card:nth-child(2) .contact-info-icon {
+            background: #fff2c8;
+            color: #b88700;
+        }
+
+        .contact-info-card:nth-child(3) .contact-info-icon {
+            background: #e2f2e4;
+            color: #4d9563;
+        }
+
+        .contact-info-card h3 {
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info-card p {
+            color: var(--muted);
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-info-card a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .contact-info-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= ENQUIRY SECTION ================= */
+
+        .contact-form-section {
+            background: var(--surface);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            align-items: start;
+            gap: 35px;
+        }
+
+        /* ================= FORM BOX ================= */
+
+        .contact-form-box {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.025);
+        }
+
+        .contact-form-box h2 {
+            font-size: clamp(25px, 3vw, 32px);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .contact-form-description {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 22px;
+        }
+
+        .contact-form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .contact-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .contact-field label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .contact-field label span {
+            color: #dc2626;
+        }
+
+        .contact-field input,
+        .contact-field select,
+        .contact-field textarea {
+            width: 100%;
+            min-height: 49px;
+            padding: 12px 15px;
+            background: #ffffff;
+            border: 1px solid #dce1e9;
+            border-radius: 9px;
+            outline: none;
+            color: var(--text);
+            font: inherit;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-field textarea {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+        .contact-field input:focus,
+        .contact-field select:focus,
+        .contact-field textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(89, 105, 199, 0.12);
+        }
+
+        .contact-field input::placeholder,
+        .contact-field textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .contact-form-note {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .contact-submit {
+            border: 0;
+            width: fit-content;
+            cursor: pointer;
+        }
+
+        .contact-form-status {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .contact-form-status:empty {
+            display: none;
+        }
+
+        /* ================= SIDE PANEL ================= */
+
+        .contact-side-panel {
+            display: grid;
+            gap: 25px;
+        }
+
+        .contact-side-card {
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: #ffffff;
+        }
+
+        .contact-side-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-side-card h3 i {
+            color: var(--primary);
+        }
+
+        .contact-side-card>p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        /* ================= OFFICE HOURS ================= */
+
+        .office-hours {
+            list-style: none;
+        }
+
+        .office-hours li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .office-hours li:last-child {
+            border-bottom: 0;
+        }
+
+        .office-hours span {
+            color: var(--muted);
+        }
+
+        .office-hours strong {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        /* ================= QUICK CONTACT ================= */
+
+        .quick-contact-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quick-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+        }
+
+        .quick-contact-item>i {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: #e9e5ff;
+            color: var(--primary);
+        }
+
+        .quick-contact-item strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .quick-contact-item p,
+        .quick-contact-item a {
+            font-size: 13px;
+            color: var(--muted);
+            overflow-wrap: anywhere;
+        }
+
+        /* ================= LOCATION ================= */
+
+        .location-section {
+            background: #ffffff;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .location-content h2 {
+            font-size: clamp(28px, 3vw, 39px);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .location-content p {
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .location-address {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--surface);
+            margin-bottom: 25px;
+        }
+
+        .location-address i {
+            color: var(--primary);
+            font-size: 22px;
+            margin-top: 3px;
+        }
+
+        .location-address strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .location-address span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .location-map {
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+            padding: 35px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background:
+                radial-gradient(circle at 25% 25%, #e9e5ff, transparent 42%),
+                linear-gradient(135deg, #f8fafc, #edf0ff);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .location-map-content {
+            max-width: 320px;
+        }
+
+        .location-map-content>i {
+            display: block;
+            color: var(--primary);
+            font-size: 48px;
+            margin-bottom: 18px;
+        }
+
+        .location-map-content h3 {
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .location-map-content p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            min-height: 360px;
+            border: 0;
+            border-radius: inherit;
+        }
+
+        /* ================= FAQ ================= */
+
+        .contact-faq-section {
+            background: var(--surface);
+        }
+
+        .contact-faq-list {
+            max-width: 820px;
+            margin: auto;
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-faq-item {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .contact-faq-item summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 22px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            list-style: none;
+        }
+
+        .contact-faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .contact-faq-item summary::after {
+            content: "+";
+            color: var(--primary);
+            font-size: 23px;
+            font-weight: 400;
+        }
+
+        .contact-faq-item[open] summary::after {
+            content: "−";
+        }
+
+        .contact-faq-item p {
+            padding: 0 25px 22px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-side-panel {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: auto;
+            }
+
+            .contact-form-box {
+                padding: 30px 24px;
+            }
+
+            .contact-side-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .location-map {
+                min-height: 300px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .contact-form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-box {
+                padding: 25px 18px;
+            }
+
+            .contact-side-card {
+                padding: 25px 20px;
+            }
+
+            .contact-submit {
+                width: 100%;
+            }
+
+            .contact-faq-item summary {
+                padding: 18px;
+                font-size: 14px;
+            }
+
+            .contact-faq-item p {
+                padding: 0 18px 18px;
+            }
+
+            .office-hours li {
+                flex-wrap: wrap;
+            }
+
+        }
+    </style>
+
+    <!-- ================= COMMON JAVASCRIPT ================= -->
+
+    <script src="/assets/js/main.js" defer></script>
+
+    <!-- ================= JSON WEBSITE LOADER ================= -->
+
+    <script src="/assets/js/website-data.js" data-website-loader data-root="/" defer>
+    </script>
+
+</head>
+
+<body data-page="contact">
+
+    <!-- =====================================================
+         HEADER + HERO
+    ====================================================== -->
+
+    <div class="hero-wrapper">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="site-header">
+
+            <nav class="navbar container" aria-label="Main navigation">
+
+                <!-- ================= LOGO ================= -->
+
+                <a href="/" class="logo">
+
+                    <span class="logo-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </span>
+
+                    <span data-bind="website.shortName">
+                        Bright Future
+                    </span>
+
+                </a>
+
+                <!-- ================= MOBILE MENU ================= -->
+
+                <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"
+                    aria-controls="navLinks">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+                <!-- ================= NAVIGATION ================= -->
+
+                <ul class="nav-links" id="navLinks">
+
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="/pages/services/">Services</a>
+                    </li>
+
+                    <li>
+                        <a href="/pages/about/">About</a>
+                    </li>
+
+                    <li>
+                        <a href="/pages/contact/" class="contact-link active" aria-current="page">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </header>
+
+        <!-- ================= CONTACT HERO ================= -->
+
+        <section class="hero container">
+
+            <!-- ================= HERO CONTENT ================= -->
+
+            <div class="hero-content">
+
+                <span class="eyebrow" data-bind="contactPage.hero.eyebrow">
+                    We Are Here to Help
+                </span>
+
+                <h1 data-bind="contactPage.hero.title">
+                    Get in Touch With Us.
+                </h1>
+
+                <p data-bind="contactPage.hero.description">
+                    Have questions about admissions,
+                    educational programs or our institution?
+                    Contact us for information and guidance.
+                </p>
+
+                <a href="#contact-information" class="btn btn-yellow" data-link="contactPage.hero.button.url">
+
+                    <span data-bind="contactPage.hero.button.text">
+                        Contact Information
+                    </span>
+
+                    <i class="fa-solid fa-arrow-down"></i>
+
+                </a>
+
+            </div>
+
+            <!-- ================= HERO IMAGE ================= -->
+
+            <div class="hero-image">
+
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85"
+                    alt="Students discussing educational opportunities" data-image="contactPage.hero.image"
+                    data-image-alt="contactPage.hero.imageAlt" fetchpriority="high">
+
+            </div>
+
+        </section>
+
+        <!-- ================= HERO WAVE ================= -->
+
+        <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+
+            <path
+                d="M0,50 C60,10 120,10 180,50 S300,90 360,50 S480,10 540,50 S660,90 720,50 S840,10 900,50 S1020,90 1080,50 S1200,10 1260,50 S1380,90 1440,50 L1440,100 L0,100 Z">
+            </path>
+
+        </svg>
+
+    </div>
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+        <!-- =================================================
+             SECTION 01 — CONTACT INFORMATION
+        ================================================== -->
+
+        <section class="section" id="contact-information">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 data-bind="contactPage.information.title">
+                        Contact Information
+                    </h2>
+
+                    <p data-bind="contactPage.information.description">
+                        Choose the most convenient way
+                        to reach our academy.
+                    </p>
+
+                </div>
+
+                <div class="contact-info-grid">
+
+                    <!-- ================= ADDRESS CARD ================= -->
+
+                    <article class="contact-info-card">
+
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <h3>Visit Our Institution</h3>
+
+                        <p data-contact-address>
+                            Demo Campus, Education Road,
+                            Demo City, India
+                        </p>
+
+                    </article>
+
+                    <!-- ================= EMAIL CARD ================= -->
+
+                    <article class="contact-info-card">
+
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+
+                        <h3>Email Us</h3>
+
+                        <p>
+                            For general enquiries
+                            and admission information.
+                        </p>
+
+                        <p>
+                            <a href="mailto:contact@example.com" data-contact-email>
+                                contact@example.com
+                            </a>
+                        </p>
+
+                    </article>
+
+                    <!-- ================= PHONE CARD ================= -->
+
+                    <article class="contact-info-card">
+
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+
+                        <h3>Call Us</h3>
+
+                        <p>
+                            Speak with our team
+                            during office hours.
+                        </p>
+
+                        <p>
+                            <a href="tel:+910000000000" data-contact-phone>
+                                +91 00000 00000
+                            </a>
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             SECTION 02 — ENQUIRY FORM + OFFICE HOURS
+        ================================================== -->
+
+        <section class="section contact-form-section" id="enquiry" data-enabled="contactPage.form.enabled">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 data-bind="contactPage.form.title">
+                        Send Us an Enquiry
+                    </h2>
+
+                    <p data-bind="contactPage.form.description">
+                        Have a question? Fill in the form
+                        below to prepare an email enquiry.
+                    </p>
+
+                </div>
+
+                <div class="contact-layout">
+
+                    <!-- ================= FORM BOX ================= -->
+
+                    <div class="contact-form-box">
+
+                        <h2>How Can We Help You?</h2>
+
+                        <p class="contact-form-description">
+                            Please provide your details and
+                            tell us how we can assist you.
+                        </p>
+
+                        <!--
+                            MAILTO FORM
+                            No backend or automatic message storage.
+                        -->
+
+                        <form class="contact-form" id="contactForm" data-contact-form>
+
+                            <!-- ================= NAME + EMAIL ================= -->
+
+                            <div class="contact-form-row">
+
+                                <div class="contact-field">
+
+                                    <label for="contactName">
+                                        Full Name <span>*</span>
+                                    </label>
+
+                                    <input type="text" id="contactName" name="name" placeholder="Enter your full name"
+                                        autocomplete="name" maxlength="100" required>
+
+                                </div>
+
+                                <div class="contact-field">
+
+                                    <label for="contactEmail">
+                                        Email Address <span>*</span>
+                                    </label>
+
+                                    <input type="email" id="contactEmail" name="email"
+                                        placeholder="Enter your email address" autocomplete="email" maxlength="150"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <!-- ================= PHONE + SUBJECT ================= -->
+
+                            <div class="contact-form-row">
+
+                                <div class="contact-field">
+
+                                    <label for="contactPhone">
+                                        Phone Number
+                                    </label>
+
+                                    <input type="tel" id="contactPhone" name="phone"
+                                        placeholder="Enter your phone number" autocomplete="tel" maxlength="20">
+
+                                </div>
+
+                                <div class="contact-field">
+
+                                    <label for="contactSubject">
+                                        Enquiry Type <span>*</span>
+                                    </label>
+
+                                    <select id="contactSubject" name="subject" required>
+
+                                        <option value="" selected disabled>
+                                            Select enquiry type
+                                        </option>
+
+                                        <option value="Admission Enquiry">
+                                            Admission Enquiry
+                                        </option>
+
+                                        <option value="Course Information">
+                                            Course Information
+                                        </option>
+
+                                        <option value="Academic Support">
+                                            Academic Support
+                                        </option>
+
+                                        <option value="General Enquiry">
+                                            General Enquiry
+                                        </option>
+
+                                        <option value="Other">
+                                            Other
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <!-- ================= MESSAGE ================= -->
+
+                            <div class="contact-field">
+
+                                <label for="contactMessage">
+                                    Your Message <span>*</span>
+                                </label>
+
+                                <textarea id="contactMessage" name="message" placeholder="Write your message here..."
+                                    minlength="10" maxlength="3000" required></textarea>
+
+                            </div>
+
+                            <!-- ================= FORM NOTE ================= -->
+
+                            <p class="contact-form-note">
+                                By continuing, your email application
+                                will open with the enquiry details.
+                                Please review the message and send it
+                                from your email account.
+                            </p>
+
+                            <!-- ================= SUBMIT BUTTON ================= -->
+
+                            <button type="submit" class="btn btn-purple contact-submit">
+
+                                <i class="fa-solid fa-paper-plane"></i>
+
+                                <span data-bind="contactPage.form.submitText">
+                                    Prepare Email
+                                </span>
+
+                            </button>
+
+                            <p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
+
+                        </form>
+
+                    </div>
+
+                    <!-- ================= SIDE PANEL ================= -->
+
+                    <aside class="contact-side-panel">
+
+                        <!-- ================= OFFICE HOURS ================= -->
+
+                        <div class="contact-side-card">
+
+                            <h3>
+                                <i class="fa-regular fa-clock"></i>
+                                Office Hours
+                            </h3>
+
+                            <p>
+                                Please confirm official working
+                                hours before visiting.
+                            </p>
+
+                            <ul class="office-hours" data-repeat="contact.officeHours">
+
+                                <li>
+                                    <span>Monday – Friday</span>
+                                    <strong>To Be Updated</strong>
+                                </li>
+
+                                <li>
+                                    <span>Saturday</span>
+                                    <strong>To Be Updated</strong>
+                                </li>
+
+                                <li>
+                                    <span>Sunday</span>
+                                    <strong>To Be Updated</strong>
+                                </li>
+
+                                <li>
+                                    <span>Public Holidays</span>
+                                    <strong>Please Confirm</strong>
+                                </li>
+
+                                <!-- ================= JSON HOURS TEMPLATE ================= -->
+
+                                <template data-item-template>
+
+                                    <li>
+                                        <span data-item-text="day">
+                                            Day
+                                        </span>
+
+                                        <strong data-item-text="hours">
+                                            Working Hours
+                                        </strong>
+                                    </li>
+
+                                </template>
+
+                            </ul>
+
+                        </div>
+
+                        <!-- ================= QUICK CONTACT ================= -->
+
+                        <div class="contact-side-card">
+
+                            <h3>
+                                <i class="fa-solid fa-headset"></i>
+                                Quick Contact
+                            </h3>
+
+                            <p>
+                                You can also reach us directly
+                                using the contact information below.
+                            </p>
+
+                            <div class="quick-contact-list">
+
+                                <!-- ================= EMAIL ================= -->
+
+                                <div class="quick-contact-item">
+
+                                    <i class="fa-solid fa-envelope"></i>
+
+                                    <div>
+                                        <strong>Email</strong>
+
+                                        <a href="mailto:contact@example.com" data-contact-email>
+                                            contact@example.com
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <!-- ================= PHONE ================= -->
+
+                                <div class="quick-contact-item">
+
+                                    <i class="fa-solid fa-phone"></i>
+
+                                    <div>
+                                        <strong>Phone</strong>
+
+                                        <a href="tel:+910000000000" data-contact-phone>
+                                            +91 00000 00000
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <!-- ================= ADDRESS ================= -->
+
+                                <div class="quick-contact-item">
+
+                                    <i class="fa-solid fa-location-dot"></i>
+
+                                    <div>
+                                        <strong>Address</strong>
+
+                                        <p data-contact-address>
+                                            Demo Campus, Education Road,
+                                            Demo City, India
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             SECTION 03 — LOCATION
+        ================================================== -->
+
+        <section class="section location-section" id="location" data-enabled="contactPage.location.enabled">
+
+            <div class="container location-grid">
+
+                <!-- ================= LOCATION CONTENT ================= -->
+
+                <div class="location-content">
+
+                    <h2 data-bind="contactPage.location.title">
+                        Find Our Institution
+                    </h2>
+
+                    <p data-bind="contactPage.location.description">
+                        Planning to visit us?
+                        Find our address and contact
+                        the institution for directions
+                        or appointment information.
+                    </p>
+
+                    <div class="location-address">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <div>
+
+                            <strong data-bind="website.name">
+                                Bright Future Academy
+                            </strong>
+
+                            <span data-contact-address>
+                                Demo Campus, Education Road,
+                                Demo City, India
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ================= GOOGLE MAPS LINK ================= -->
+
+                    <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-purple" data-map-link>
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        Open Google Maps
+
+                    </a>
+
+                </div>
+
+                <!-- ================= MAP PLACEHOLDER ================= -->
+
+                <div class="location-map">
+
+                    <div class="location-map-content">
+
+                        <i class="fa-solid fa-map-marked-alt"></i>
+
+                        <h3>Our Location</h3>
+
+                        <p>
+                            Add your institution's
+                            official Google Maps
+                            embed or location link here.
+                        </p>
+
+                    </div>
+
+                    <!--
+                        JSON map integration:
+                        contact.googleMaps.embedUrl
+
+                        The website loader should only render
+                        a validated Google Maps embed URL.
+
+                        Without an embed URL, the original
+                        placeholder remains visible.
+                    -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             SECTION 04 — FREQUENTLY ASKED QUESTIONS
+        ================================================== -->
+
+        <section class="section contact-faq-section" id="contact-faq">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 data-bind="contactPage.faq.title">
+                        Frequently Asked Questions
+                    </h2>
+
+                    <p data-bind="contactPage.faq.description">
+                        Find answers to common questions
+                        about contacting our institution.
+                    </p>
+
+                </div>
+
+                <div class="contact-faq-list" data-repeat="contactPage.faq.items">
+
+                    <!-- ================= FAQ 01 ================= -->
+
+                    <details class="contact-faq-item">
+
+                        <summary>
+                            How can I contact the institution?
+                        </summary>
+
+                        <p>
+                            You can use the contact details
+                            provided on this page or prepare
+                            an email using the enquiry form.
+                        </p>
+
+                    </details>
+
+                    <!-- ================= FAQ 02 ================= -->
+
+                    <details class="contact-faq-item">
+
+                        <summary>
+                            How can I enquire about admissions?
+                        </summary>
+
+                        <p>
+                            Select Admission Enquiry in
+                            the contact form or contact
+                            the institution directly for
+                            admission-related information.
+                        </p>
+
+                    </details>
+
+                    <!-- ================= FAQ 03 ================= -->
+
+                    <details class="contact-faq-item">
+
+                        <summary>
+                            Can I visit the institution?
+                        </summary>
+
+                        <p>
+                            Please contact the institution
+                            to confirm visiting hours,
+                            availability and any appointment
+                            requirements before visiting.
+                        </p>
+
+                    </details>
+
+                    <!-- ================= FAQ 04 ================= -->
+
+                    <details class="contact-faq-item">
+
+                        <summary>
+                            Does the enquiry form send my message automatically?
+                        </summary>
+
+                        <p>
+                            No. The form prepares an email
+                            and opens your email application.
+                            You must review and send the
+                            message yourself.
+                        </p>
+
+                    </details>
+
+                    <!-- ================= JSON FAQ TEMPLATE ================= -->
+
+                    <template data-item-template>
+
+                        <details class="contact-faq-item">
+
+                            <summary data-item-text="question">
+                                Question
+                            </summary>
+
+                            <p data-item-text="answer">
+                                Answer
+                            </p>
+
+                        </details>
+
+                    </template>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             SECTION 05 — CONTACT CTA
+        ================================================== -->
+
+        <section class="cta-section" data-enabled="cta.contact.enabled">
+
+            <div class="container">
+
+                <h2 data-bind="cta.contact.title">
+                    We Look Forward to Hearing From You
+                </h2>
+
+                <p data-bind="cta.contact.description">
+                    Whether you have questions about
+                    educational programs, admissions
+                    or general information,
+                    feel free to get in touch.
+                </p>
+
+                <a href="#enquiry" class="btn btn-purple" data-link="cta.contact.buttonUrl">
+
+                    <span data-bind="cta.contact.buttonText">
+                        Send an Enquiry
+                    </span>
+
+                    <i class="fa-solid fa-arrow-up"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer" data-enabled="footer.enabled">
+
+        <!-- ================= FOOTER WAVE ================= -->
+
+        <svg class="footer-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+
+            <path
+                d="M0,0 H1440 V50 C1380,10 1320,10 1260,50 S1140,90 1080,50 S960,10 900,50 S780,90 720,50 S600,10 540,50 S420,90 360,50 S240,10 180,50 S60,90 0,50 Z">
+            </path>
+
+        </svg>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <!-- ================= FOOTER ABOUT ================= -->
+
+                <div>
+
+                    <h3 data-bind="website.name">
+                        Bright Future Academy
+                    </h3>
+
+                    <p data-bind="footer.aboutText">
+                        Supporting students through quality
+                        education, meaningful learning
+                        and opportunities for growth.
+                    </p>
+
+                </div>
+
+                <!-- ================= QUICK LINKS ================= -->
+
+                <div>
+
+                    <h3>Quick Links</h3>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="/pages/services/">Services</a>
+                        </li>
+
+                        <li>
+                            <a href="/pages/about/">About Us</a>
+                        </li>
+
+                        <li>
+                            <a href="/pages/contact/">Contact</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- ================= CONTACT INFO ================= -->
+
+                <div data-enabled="footer.showContact">
+
+                    <h3>Contact Information</h3>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <span data-contact-address>
+                            Demo Campus, Education Road,
+                            Demo City, India
+                        </span>
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <span data-contact-email>
+                            contact@example.com
+                        </span>
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-phone"></i>
+
+                        <span data-contact-phone>
+                            +91 00000 00000
+                        </span>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ================= COPYRIGHT ================= -->
+
+            <div class="footer-bottom">
+
+                <p>
+                    © <span id="year">2026</span>
+
+                    <span data-bind="website.name">
+                        Bright Future Academy
+                    </span>.
+
+                    <span data-bind="footer.copyrightText">
+                        All Rights Reserved.
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- =====================================================
+         CONTACT PAGE JAVASCRIPT
+         Form-specific functionality only.
+         Main navigation handled by main.js.
+    ====================================================== -->
+
+    <script>
+
+        "use strict";
+
+        /* ================= CONTACT FORM ================= */
+
+        const contactForm = document.getElementById("contactForm");
+        const contactFormStatus = document.getElementById("contactFormStatus");
+
+        if (contactForm) {
+
+            contactForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!contactForm.reportValidity()) {
+                    return;
+                }
+
+                const name = document.getElementById("contactName").value.trim();
+                const email = document.getElementById("contactEmail").value.trim();
+                const phone = document.getElementById("contactPhone").value.trim();
+                const subject = document.getElementById("contactSubject").value;
+                const message = document.getElementById("contactMessage").value.trim();
+
+                if (!name || !email || !subject || message.length < 10) {
+
+                    contactFormStatus.textContent =
+                        "Please complete all required fields.";
+
+                    return;
+                }
+
+                /*
+                 * Recipient is loaded from website.json.
+                 * It is set by the existing website-data.js
+                 * contact form integration.
+                 */
+
+                const recipient =
+                    contactForm.dataset.recipientEmail ||
+                    contactForm.dataset.contactEmail ||
+                    "";
+
+                const validRecipient =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient);
+
+                if (!validRecipient || recipient === "contact@example.com") {
+
+                    contactFormStatus.textContent =
+                        "Please configure the institution's official email in website.json.";
+
+                    return;
+                }
+
+                const emailSubject = `Institution Enquiry: ${subject}`;
+
+                const emailBody = [
+                    "Institution Enquiry",
+                    "",
+                    `Name: ${name}`,
+                    `Email: ${email}`,
+                    `Phone: ${phone || "Not provided"}`,
+                    `Enquiry Type: ${subject}`,
+                    "",
+                    "Message:",
+                    message
+                ].join("\n");
+
+                const mailtoLink =
+                    `mailto:${recipient}` +
+                    `?subject=${encodeURIComponent(emailSubject)}` +
+                    `&body=${encodeURIComponent(emailBody)}`;
+
+                contactFormStatus.textContent =
+                    "Opening your email application. Please review and send the message.";
+
+                window.location.href = mailtoLink;
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

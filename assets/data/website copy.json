@@ -1,0 +1,636 @@
+
+{
+  "website": {
+    "name": "Institution Name",
+    "shortName": "Institution",
+    "tagline": "Learning Today, Leading Tomorrow",
+    "type": "school",
+    "status": "active",
+    "language": "en",
+    "websiteUrl": "",
+    "logo": {
+      "type": "icon",
+      "icon": "fa-solid fa-graduation-cap",
+      "image": "",
+      "alt": "Institution Name Logo"
+    },
+    "favicon": "",
+    "theme": {
+      "primary": "#5969c7",
+      "primaryDark": "#4758b2",
+      "secondary": "#f3c747",
+      "text": "#24313c",
+      "muted": "#64748b",
+      "background": "#ffffff",
+      "surface": "#f8fafc",
+      "border": "#e5e7eb"
+    }
+  },
+  "seo": {
+    "siteName": "Institution Name",
+    "defaultTitle": "Institution Name | Quality Education & Learning",
+    "defaultDescription": "Explore educational programs, academic support, student development and learning opportunities at Institution Name.",
+    "robots": "index, follow",
+    "googlebot": "index, follow, max-image-preview:large",
+    "bingbot": "index, follow",
+    "author": "Institution Name",
+    "publisher": "Institution Name",
+    "ogType": "website",
+    "ogLocale": "en_IN",
+    "ogImage": "",
+    "twitterCard": "summary_large_image",
+    "twitterSite": "",
+    "twitterCreator": "",
+    "pages": {
+      "home": {
+        "title": "Institution Name | Quality Education & Learning",
+        "description": "Welcome to Institution Name. Discover educational programs, student support and learning opportunities.",
+        "keywords": "school, education, learning, students, institution",
+        "path": "/",
+        "robots": "index, follow",
+        "ogTitle": "Institution Name | Learning Today, Leading Tomorrow",
+        "ogDescription": "Discover educational programs and meaningful learning experiences.",
+        "ogImage": "",
+        "ogImageAlt": "Institution Name",
+        "twitterTitle": "Institution Name | Quality Education",
+        "twitterDescription": "Discover learning opportunities at Institution Name.",
+        "twitterImage": "",
+        "schemaType": "School"
+      },
+      "services": {
+        "title": "Services & Learning Programs | Institution Name",
+        "description": "Explore academic education, classroom learning, student guidance, skill development and educational services at Institution Name.",
+        "keywords": "educational services, academic programs, classroom learning, student guidance",
+        "path": "/services/",
+        "robots": "index, follow",
+        "ogTitle": "Our Services & Programs | Institution Name",
+        "ogDescription": "Explore educational programs and student development opportunities.",
+        "ogImage": "",
+        "ogImageAlt": "Educational programs at Institution Name",
+        "twitterTitle": "Services & Programs | Institution Name",
+        "twitterDescription": "Discover academic and learning services.",
+        "twitterImage": "",
+        "schemaType": "CollectionPage"
+      },
+      "about": {
+        "title": "About Us | Institution Name",
+        "description": "Learn about Institution Name, our mission, vision, values, educational approach and team.",
+        "keywords": "about institution, school mission, education vision, teaching team",
+        "path": "/about/",
+        "robots": "index, follow",
+        "ogTitle": "About Institution Name",
+        "ogDescription": "Learn about our mission, vision and commitment to education.",
+        "ogImage": "",
+        "ogImageAlt": "About Institution Name",
+        "twitterTitle": "About Us | Institution Name",
+        "twitterDescription": "Discover our mission, vision and educational values.",
+        "twitterImage": "",
+        "schemaType": "AboutPage"
+      },
+      "contact": {
+        "title": "Contact Us | Institution Name",
+        "description": "Contact Institution Name for admission enquiries, educational programs, office hours, address and general information.",
+        "keywords": "contact school, admission enquiry, institution address, education contact",
+        "path": "/contact/",
+        "robots": "index, follow",
+        "ogTitle": "Contact Institution Name",
+        "ogDescription": "Get in touch for admissions, educational programs and enquiries.",
+        "ogImage": "",
+        "ogImageAlt": "Contact Institution Name",
+        "twitterTitle": "Contact Us | Institution Name",
+        "twitterDescription": "Find contact information and send an enquiry.",
+        "twitterImage": "",
+        "schemaType": "ContactPage"
+      }
+    }
+  },
+  "navigation": {
+    "items": [
+      {
+        "name": "Home",
+        "url": "/",
+        "page": "home",
+        "visible": true
+      },
+      {
+        "name": "Services",
+        "url": "/services/",
+        "page": "services",
+        "visible": true
+      },
+      {
+        "name": "About",
+        "url": "/about/",
+        "page": "about",
+        "visible": true
+      },
+      {
+        "name": "Contact",
+        "url": "/contact/",
+        "page": "contact",
+        "visible": true
+      }
+    ]
+  },
+  "contact": {
+    "email": "contact@example.com",
+    "phone": "+910000000000",
+    "displayPhone": "+91 00000 00000",
+    "alternatePhone": "",
+    "whatsapp": "",
+    "address": {
+      "line1": "Institution Address",
+      "line2": "",
+      "city": "City",
+      "district": "",
+      "state": "State",
+      "postalCode": "",
+      "country": "India",
+      "fullAddress": "Institution Address, City, State, India"
+    },
+    "googleMaps": {
+      "placeUrl": "",
+      "embedUrl": "",
+      "latitude": null,
+      "longitude": null
+    },
+    "officeHours": [
+      {
+        "day": "Monday - Friday",
+        "time": "To Be Updated"
+      },
+      {
+        "day": "Saturday",
+        "time": "To Be Updated"
+      },
+      {
+        "day": "Sunday",
+        "time": "To Be Updated"
+      },
+      {
+        "day": "Public Holidays",
+        "time": "Please Confirm"
+      }
+    ]
+  },
+  "socialMedia": {
+    "facebook": "",
+    "instagram": "",
+    "youtube": "",
+    "linkedin": "",
+    "twitter": "",
+    "whatsapp": "",
+    "telegram": ""
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Welcome to Our Institution",
+      "title": "Learning Today, Leading Tomorrow.",
+      "description": "Creating meaningful learning experiences that help students develop knowledge, confidence and skills for the future.",
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85",
+      "imageAlt": "Students learning together in a classroom",
+      "button": {
+        "text": "Explore Our Programs",
+        "url": "/services/",
+        "visible": true
+      }
+    },
+    "features": {
+      "enabled": true,
+      "title": "Why Choose Us?",
+      "description": "Supporting students with meaningful learning experiences.",
+      "items": [
+        {
+          "id": "feature-01",
+          "icon": "fa-solid fa-book-open",
+          "title": "Quality Learning",
+          "description": "Encouraging understanding, curiosity and academic development."
+        },
+        {
+          "id": "feature-02",
+          "icon": "fa-solid fa-chalkboard-user",
+          "title": "Learning Support",
+          "description": "Helping students strengthen their knowledge and confidence."
+        },
+        {
+          "id": "feature-03",
+          "icon": "fa-solid fa-users",
+          "title": "Student Development",
+          "description": "Supporting creativity, collaboration and personal growth."
+        }
+      ]
+    },
+    "aboutPreview": {
+      "enabled": true,
+      "title": "A Place to Learn, Grow and Succeed",
+      "description": "We aim to provide a supportive educational environment that encourages curiosity, confidence and continuous learning.",
+      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=85",
+      "button": {
+        "text": "Learn More",
+        "url": "/about/"
+      }
+    },
+    "programs": {
+      "enabled": true,
+      "title": "Our Learning Programs",
+      "description": "Explore opportunities for learning and development.",
+      "items": [
+        {
+          "id": "program-01",
+          "number": "01",
+          "title": "Academic Learning",
+          "description": "Build strong foundations through structured learning."
+        },
+        {
+          "id": "program-02",
+          "number": "02",
+          "title": "Skill Development",
+          "description": "Develop practical understanding and useful skills."
+        },
+        {
+          "id": "program-03",
+          "number": "03",
+          "title": "Student Activities",
+          "description": "Encourage participation, teamwork and creativity."
+        }
+      ]
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Education & Learning",
+      "title": "Our Services",
+      "description": "Discover our educational programs, learning opportunities and student support services.",
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85",
+      "imageAlt": "Students learning in a classroom",
+      "button": {
+        "text": "Explore Programs",
+        "url": "#learning-programs",
+        "visible": true
+      }
+    },
+    "overview": {
+      "enabled": true,
+      "title": "Supporting Every Learning Journey",
+      "description": "We focus on creating educational experiences that support knowledge, confidence and student development."
+    },
+    "highlights": [
+      {
+        "id": "highlight-01",
+        "icon": "fa-solid fa-book-open",
+        "title": "Academic Learning",
+        "description": "Subject knowledge and understanding."
+      },
+      {
+        "id": "highlight-02",
+        "icon": "fa-solid fa-user-graduate",
+        "title": "Student Support",
+        "description": "Guidance for learning and development."
+      },
+      {
+        "id": "highlight-03",
+        "icon": "fa-solid fa-lightbulb",
+        "title": "Skill Development",
+        "description": "Practical thinking and creativity."
+      },
+      {
+        "id": "highlight-04",
+        "icon": "fa-solid fa-users",
+        "title": "Learning Activities",
+        "description": "Participation and collaboration."
+      }
+    ],
+    "programs": {
+      "enabled": true,
+      "title": "Our Learning Programs",
+      "description": "Explore the main areas of education and student development.",
+      "items": [
+        {
+          "id": "service-01",
+          "icon": "fa-solid fa-book-open-reader",
+          "title": "Academic Education",
+          "description": "Structured learning focused on subject knowledge and academic progress."
+        },
+        {
+          "id": "service-02",
+          "icon": "fa-solid fa-chalkboard-user",
+          "title": "Classroom Learning",
+          "description": "Interactive teaching and educational activities."
+        },
+        {
+          "id": "service-03",
+          "icon": "fa-solid fa-user-graduate",
+          "title": "Student Guidance",
+          "description": "Learning support and academic guidance."
+        },
+        {
+          "id": "service-04",
+          "icon": "fa-solid fa-lightbulb",
+          "title": "Skill Development",
+          "description": "Creativity, practical learning and problem-solving."
+        },
+        {
+          "id": "service-05",
+          "icon": "fa-solid fa-clipboard-check",
+          "title": "Learning Assessment",
+          "description": "Assessments and feedback for learning progress."
+        },
+        {
+          "id": "service-06",
+          "icon": "fa-solid fa-people-group",
+          "title": "Student Activities",
+          "description": "Educational activities and teamwork."
+        }
+      ]
+    },
+    "facilities": {
+      "enabled": true,
+      "title": "Supporting Better Learning Experiences",
+      "description": "Creating an environment that encourages knowledge, confidence and practical skills.",
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+      "items": [
+        "Structured educational programs",
+        "Student-focused learning approach",
+        "Academic guidance and support",
+        "Opportunities for skill development",
+        "Creativity and collaboration"
+      ]
+    },
+    "learningProcess": {
+      "enabled": true,
+      "title": "Our Learning Approach",
+      "description": "A simple approach focused on understanding, practice and improvement.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Learn",
+          "description": "Build understanding through educational guidance."
+        },
+        {
+          "number": "02",
+          "title": "Practice",
+          "description": "Strengthen knowledge through exercises and activities."
+        },
+        {
+          "number": "03",
+          "title": "Improve",
+          "description": "Understand progress through feedback and continuous learning."
+        }
+      ]
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Get to Know Us",
+      "title": "About Our Institution",
+      "description": "Discover our commitment to education, student development and meaningful learning experiences.",
+      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=85",
+      "imageAlt": "Students celebrating educational achievements",
+      "button": {
+        "text": "Learn About Us",
+        "url": "#about-overview",
+        "visible": true
+      }
+    },
+    "overview": {
+      "enabled": true,
+      "title": "A Place to Learn, Grow and Succeed",
+      "paragraphs": [
+        "Institution Name is committed to supporting students through meaningful educational experiences and structured learning.",
+        "We believe education should encourage curiosity, build confidence and develop knowledge and practical skills.",
+        "Our approach focuses on creating a positive environment where students can explore ideas and work towards their educational goals."
+      ],
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85"
+    },
+    "mission": {
+      "enabled": true,
+      "icon": "fa-solid fa-bullseye",
+      "title": "Our Mission",
+      "description": "To provide a supportive and engaging learning environment that encourages academic growth, practical understanding, confidence and personal development."
+    },
+    "vision": {
+      "enabled": true,
+      "icon": "fa-solid fa-eye",
+      "title": "Our Vision",
+      "description": "To inspire students to become confident learners, responsible individuals and active contributors to their communities."
+    },
+    "values": {
+      "enabled": true,
+      "title": "Our Core Values",
+      "items": [
+        {
+          "icon": "fa-solid fa-book-open-reader",
+          "title": "Quality Learning",
+          "description": "Encouraging understanding, curiosity and meaningful educational experiences."
+        },
+        {
+          "icon": "fa-solid fa-handshake",
+          "title": "Respect & Responsibility",
+          "description": "Promoting respect, responsibility and positive participation."
+        },
+        {
+          "icon": "fa-solid fa-lightbulb",
+          "title": "Growth & Innovation",
+          "description": "Encouraging creativity, problem-solving and continuous improvement."
+        }
+      ]
+    },
+    "learningApproach": {
+      "enabled": true,
+      "title": "Our Approach to Learning",
+      "description": "Supporting academic understanding while encouraging confidence and practical skills.",
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+      "items": [
+        "Student-focused learning",
+        "Clear academic guidance",
+        "Practical understanding and skill development",
+        "Creativity and collaboration",
+        "Continuous improvement"
+      ]
+    }
+  },
+  "team": {
+    "enabled": true,
+    "title": "Meet Our Team",
+    "description": "Meet the people who contribute to teaching, guidance and student development.",
+    "members": [
+      {
+        "id": "member-01",
+        "name": "Team Member 01",
+        "role": "Principal / Director",
+        "photo": "https://i.pravatar.cc/300?img=12",
+        "bio": "",
+        "email": "",
+        "visible": true
+      },
+      {
+        "id": "member-02",
+        "name": "Team Member 02",
+        "role": "Academic Coordinator",
+        "photo": "https://i.pravatar.cc/300?img=47",
+        "bio": "",
+        "email": "",
+        "visible": true
+      },
+      {
+        "id": "member-03",
+        "name": "Team Member 03",
+        "role": "Teacher",
+        "photo": "https://i.pravatar.cc/300?img=13",
+        "bio": "",
+        "email": "",
+        "visible": true
+      },
+      {
+        "id": "member-04",
+        "name": "Team Member 04",
+        "role": "Student Support",
+        "photo": "https://i.pravatar.cc/300?img=44",
+        "bio": "",
+        "email": "",
+        "visible": true
+      }
+    ]
+  },
+  "contactPage": {
+    "hero": {
+      "eyebrow": "We Are Here to Help",
+      "title": "Get in Touch With Us.",
+      "description": "Have questions about admissions, educational programs or our institution? Contact us for information and guidance.",
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85",
+      "imageAlt": "Students studying and learning in a classroom",
+      "button": {
+        "text": "Contact Information",
+        "url": "#contact-information",
+        "visible": true
+      }
+    },
+    "information": {
+      "title": "Contact Information",
+      "description": "Choose the most convenient way to reach our institution."
+    },
+    "form": {
+      "enabled": true,
+      "title": "How Can We Help You?",
+      "description": "Please provide your details and tell us how we can assist you.",
+      "deliveryMethod": "mailto",
+      "recipientEmail": "contact@example.com",
+      "submitText": "Prepare Email",
+      "fields": {
+        "name": {
+          "label": "Full Name",
+          "required": true
+        },
+        "email": {
+          "label": "Email Address",
+          "required": true
+        },
+        "phone": {
+          "label": "Phone Number",
+          "required": false
+        },
+        "subject": {
+          "label": "Enquiry Type",
+          "required": true,
+          "options": [
+            "Admission Enquiry",
+            "Course Information",
+            "Academic Support",
+            "General Enquiry",
+            "Other"
+          ]
+        },
+        "message": {
+          "label": "Your Message",
+          "required": true,
+          "minLength": 10,
+          "maxLength": 3000
+        }
+      }
+    },
+    "location": {
+      "enabled": true,
+      "title": "Find Our Institution",
+      "description": "Find our address and contact the institution for directions or appointment information.",
+      "mapEnabled": false
+    },
+    "faq": {
+      "enabled": true,
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "How can I contact the institution?",
+          "answer": "You can use the contact details on this page or prepare an email using the enquiry form."
+        },
+        {
+          "question": "How can I enquire about admissions?",
+          "answer": "Select Admission Enquiry in the contact form or contact the institution directly."
+        },
+        {
+          "question": "Can I visit the institution?",
+          "answer": "Please contact the institution to confirm visiting hours and appointment requirements."
+        },
+        {
+          "question": "Does the enquiry form send my message automatically?",
+          "answer": "No. The form opens your email application. You must review and send the message yourself."
+        }
+      ]
+    }
+  },
+  "cta": {
+    "home": {
+      "enabled": true,
+      "title": "Ready to Start Your Learning Journey?",
+      "description": "Explore educational opportunities and connect with our institution.",
+      "buttonText": "Contact Us",
+      "buttonUrl": "/contact/"
+    },
+    "services": {
+      "enabled": true,
+      "title": "Explore Learning Opportunities",
+      "description": "Contact our institution for details about educational programs and services.",
+      "buttonText": "Contact Us",
+      "buttonUrl": "/contact/"
+    },
+    "about": {
+      "enabled": true,
+      "title": "Learn More About Our Institution",
+      "description": "Have questions about our institution, programs or admission process?",
+      "buttonText": "Contact Us",
+      "buttonUrl": "/contact/"
+    },
+    "contact": {
+      "enabled": true,
+      "title": "We Look Forward to Hearing From You",
+      "description": "Feel free to get in touch for admissions, programs or general information.",
+      "buttonText": "Send an Enquiry",
+      "buttonUrl": "#enquiry"
+    }
+  },
+  "footer": {
+    "enabled": true,
+    "aboutText": "Supporting students through quality education, meaningful learning and opportunities for growth.",
+    "quickLinks": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Services",
+        "url": "/services/"
+      },
+      {
+        "name": "About Us",
+        "url": "/about/"
+      },
+      {
+        "name": "Contact",
+        "url": "/contact/"
+      }
+    ],
+    "showContact": true,
+    "showSocialLinks": true,
+    "copyrightText": "All Rights Reserved.",
+    "showCurrentYear": true
+  }
+}
