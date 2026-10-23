@@ -111,7 +111,7 @@
 ========================================== */
 
 const sections = [
-    // "header",
+    "header",
     "hero",
     "about",
     "skills",
