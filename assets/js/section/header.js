@@ -1,42 +1,138 @@
 
 /* ============================================================
-   HAPROVEN HEADER & WEBSITE UTILITIES
-   Dynamic Section Loader Compatible
-   Original Features Preserved
-   Version: 4.0
+   HAPROVEN HEADER SYSTEM — V7.0
+   One File • One Config • Easy Debugging
+
+   FEATURES
+   01. Desktop Navigation
+   02. Mobile Navigation
+   03. Navigation Dropdown
+   04. Six Dot Apps Menu
+   05. Haproven Ecosystem
+   06. Mobile Social Icons
+   07. Dark / Light Theme
+   08. Hindi / English
+   09. Page Audio Reader
+   10. Animated Brand Logo
+   11. Header Scroll Behavior
+   12. Active Navigation
+   13. Dynamic Header Loading
+   14. JSON Fallback
+   15. Central Error Reporting
 ============================================================ */
 
 (() => {
     "use strict";
 
+    if (window.HaprovenHeader?.version === "7.0") return;
+
     /* ========================================================
-       CONFIGURATION
+       01. CONFIG — CHANGE SETTINGS HERE
     ======================================================== */
 
     const CONFIG = {
-        socialJSON: "/Assets/json/side-link.json",
-        favicon: "https://haprobase.netlify.app/external/img/logo/haproven.png",
-        themeKey: "theme",
-        languageKey: "lang",
+        navigation: [
+            "/assets/json/side-link.json"
+        ],
+
+        hub: [
+            "https://raw.githubusercontent.com/codersusheel/haprobase/main/external/json/hub-menu.json",
+            "/external/json/hub-menu.json"
+        ],
+
+        storage: {
+            theme: "theme",
+            language: "lang"
+        },
+
         mobileBreakpoint: 1024,
-        brandColor: "#bc1be7"
+        scrollThreshold: 80,
+        hideOnScroll: true,
+
+        audio: {
+            selector: "main",
+            rate: 0.95,
+            pitch: 1,
+            volume: 1,
+            chunkLength: 180
+        },
+
+        debug: true
     };
 
-    let currentHeader = null;
-    let headerController = null;
-    let lastScrollTop = window.scrollY || 0;
+    /* ========================================================
+       02. STATE
+    ======================================================== */
 
-    let isHindi = readStorage(CONFIG.languageKey) === "hi";
+    const state = {
+        header: null,
+        controller: null,
+        language: readStorage(CONFIG.storage.language) === "hi"
+            ? "hi"
+            : "en",
 
-    let currentSpeech = null;
-    let selectedVoice = null;
-    let audioButton = null;
-    let speechSession = 0;
+        data: {
+            navigation: null,
+            hub: null
+        },
 
-    const originalEnglish = new WeakMap();
+        requests: {
+            navigation: null,
+            hub: null
+        },
+
+        audio: {
+            active: false,
+            token: 0,
+            chunks: [],
+            index: 0
+        },
+
+        lastScroll: window.scrollY || 0
+    };
+
+    const englishText = new WeakMap();
 
     /* ========================================================
-       STORAGE HELPERS
+       03. DEBUG — ALL ERRORS IN ONE PLACE
+    ======================================================== */
+
+    function log(feature, message, error = null) {
+        if (!CONFIG.debug) return;
+
+        const prefix = `[Haproven Header / ${feature}]`;
+
+        if (error) {
+            console.error(prefix, message, error);
+        } else {
+            console.info(prefix, message);
+        }
+    }
+
+    function report() {
+        return {
+            version: "7.0",
+            headerFound: Boolean(document.querySelector("#header")),
+            navigationLoaded: Boolean(state.data.navigation),
+            hubLoaded: Boolean(state.data.hub),
+            language: state.language,
+            theme: document.documentElement.dataset.theme,
+            audioPlaying: state.audio.active,
+            elements: {
+                desktopNav: Boolean(document.querySelector("#header-links")),
+                mobileNav: Boolean(document.querySelector("#mobile-sidebar")),
+                social: Boolean(document.querySelector("#header .haproven-sosal-links")),
+                ecosystem: Boolean(document.querySelector("#by-haproven")),
+                appsMenu: Boolean(document.querySelector("#dot6menu")),
+                theme: Boolean(document.querySelector("#theme-toggle")),
+                language: Boolean(document.querySelector("#langBtn")),
+                audio: Boolean(document.querySelector("#main-audio-button"))
+            }
+        };
+    }
+
+    /* ========================================================
+       04. STORAGE
     ======================================================== */
 
     function readStorage(key) {
@@ -47,1648 +143,292 @@
         }
     }
 
-    function writeStorage(key, value) {
+    function saveStorage(key, value) {
         try {
             localStorage.setItem(key, value);
         } catch {
-            // Storage may be unavailable.
+            log("Storage", "LocalStorage unavailable");
         }
     }
 
     /* ========================================================
-       AUTO COPYRIGHT YEAR
+       05. COMMON HELPERS
     ======================================================== */
 
-    function updateYear() {
-        document.querySelectorAll("#year").forEach(element => {
-            element.textContent = new Date().getFullYear();
-        });
+    function $(selector, root = document) {
+        return root.querySelector(selector);
     }
 
-    /* ========================================================
-       LIVE PAGE TITLE
-    ======================================================== */
-
-    function loadLivePage() {
-
-        document.querySelectorAll("#liv-open-page").forEach(element => {
-
-            const title = document.title.trim();
-
-            element.textContent = `Now viewing: ${title}`;
-
-            element.style.display = "-webkit-box";
-            element.style.webkitBoxOrient = "vertical";
-            element.style.webkitLineClamp = "2";
-            element.style.overflow = "hidden";
-            element.style.textOverflow = "ellipsis";
-        });
+    function $$(selector, root = document) {
+        return [...root.querySelectorAll(selector)];
     }
-
-    /* ========================================================
-       FAVICON
-    ======================================================== */
-
-    function initFavicon() {
-
-        if (document.querySelector('link[rel~="icon"]')) {
-            return;
-        }
-
-        const favicon = document.createElement("link");
-
-        favicon.rel = "icon";
-        favicon.type = "image/png";
-        favicon.href = CONFIG.favicon;
-
-        document.head.appendChild(favicon);
-    }
-
-    /* ========================================================
-       HAPROVEN BRAND STYLES
-    ======================================================== */
-
-    function injectBrandStyles() {
-
-        if (document.getElementById("haproven-brand-style")) {
-            return;
-        }
-
-        const style = document.createElement("style");
-        style.id = "haproven-brand-style";
-
-        style.textContent = `
-            :root {
-                --hap-purple: ${CONFIG.brandColor};
-            }
-
-            .haproven-brand {
-                display: flex;
-                align-items: center;
-                width: max-content;
-                font-family: Inter, system-ui, sans-serif;
-                cursor: pointer;
-                user-select: none;
-                transition: transform .25s ease;
-            }
-
-            .haproven-brand:active {
-                transform: scale(.96);
-            }
-
-            .haproven-icon {
-                position: relative;
-                width: 36px;
-                height: 48px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-                transition: transform .3s ease;
-            }
-
-            .haproven-brand:hover .haproven-icon {
-                transform: scale(1.04);
-            }
-
-            .shadow-layer {
-                position: absolute;
-                width: 33px;
-                height: 45px;
-                top: -2px;
-                left: -2px;
-                opacity: .35;
-                background: linear-gradient(
-                    135deg,
-                    var(--hap-purple),
-                    #ffffff55
-                );
-                clip-path: polygon(
-                    0 0,
-                    100% 0,
-                    100% 100%,
-                    50% 88%,
-                    0 100%
-                );
-                border-radius: 6px 6px 0 0;
-            }
-
-            .main-bookmark {
-                position: relative;
-                width: 30px;
-                height: 42px;
-                background: linear-gradient(
-                    135deg,
-                    var(--hap-purple),
-                    #d94dff
-                );
-                clip-path: polygon(
-                    0 0,
-                    100% 0,
-                    100% 100%,
-                    50% 88%,
-                    0 100%
-                );
-                border-radius: 6px 6px 0 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 2;
-                box-shadow: 0 7px 16px rgba(188,27,231,.30);
-            }
-
-            .haproven-icon svg {
-                width: 32px;
-                height: 32px;
-                margin-right: -4px;
-                fill: none;
-            }
-
-            .path-line {
-                stroke: #fff;
-                stroke-width: 6;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-dasharray: 260;
-                stroke-dashoffset: 260;
-                animation: hapDraw 2.8s ease-in-out infinite;
-            }
-
-            .brand-bar {
-                min-height: 30px;
-                padding: 2px 7px;
-                display: flex;
-                align-items: center;
-                margin-left: -2px;
-                border-radius: 0 8px 8px 0;
-                border: 2px solid var(--hap-purple);
-                border-left: none;
-                backdrop-filter: blur(10px);
-            }
-
-            .brand-text {
-                display: flex;
-                flex-direction: column;
-                line-height: 1;
-            }
-
-            .brand-text strong {
-                font-size: 11px;
-                font-weight: 900;
-                letter-spacing: .25px;
-            }
-
-            .brand-text small {
-                font-size: 8px;
-                font-weight: 600;
-                opacity: .7;
-                margin-top: 2px;
-                letter-spacing: .3px;
-                text-transform: uppercase;
-            }
-
-            .haproven-brand:hover .main-bookmark {
-                box-shadow:
-                    0 0 18px rgba(188,27,231,.55),
-                    0 7px 20px rgba(188,27,231,.25);
-            }
-
-            .haproven-brand.icon-only .brand-bar {
-                display: none;
-            }
-
-            @keyframes hapDraw {
-                0% {
-                    stroke-dashoffset: 260;
-                    opacity: .6;
-                }
-                50% {
-                    stroke-dashoffset: 0;
-                    opacity: 1;
-                }
-                100% {
-                    stroke-dashoffset: -260;
-                    opacity: .6;
-                }
-            }
-
-            @media (prefers-reduced-motion: reduce) {
-                .path-line {
-                    animation: none;
-                    stroke-dashoffset: 0;
-                }
-            }
-        `;
-
-        document.head.appendChild(style);
-    }
-
-    /* ========================================================
-       HAPROVEN ANIMATED LOGO
-    ======================================================== */
-
-    function initBrand(element) {
-
-        if (element.dataset.brandReady === "true") {
-            return;
-        }
-
-        const brandName =
-            element.dataset.name || "Haproven";
-
-        const parts = brandName.split(/\s+by\s+/i);
-
-        const mainName = parts[0]?.trim() || "Haproven";
-        const subName = parts.slice(1).join(" by ").trim();
-
-        element.replaceChildren();
-
-        const icon = document.createElement("div");
-        icon.className = "haproven-icon";
-
-        const shadow = document.createElement("div");
-        shadow.className = "shadow-layer";
-
-        const bookmark = document.createElement("div");
-        bookmark.className = "main-bookmark";
-
-        bookmark.innerHTML = `
-            <svg viewBox="0 0 100 100"
-                 xmlns="http://www.w3.org/2000/svg"
-                 aria-hidden="true">
-                <path class="path-line"
-                    d="
-                        M10 0 L10 70
-                        A10 10 0 0 0 30 70
-                        L30 20
-                        A10 10 0 0 1 50 20
-                        L50 70
-                        A16 9 0 0 0 70 80
-                        A13 20 0 0 1 80 94
-                        L100 95
-                    "
-                />
-            </svg>
-        `;
-
-        icon.append(shadow, bookmark);
-
-        const bar = document.createElement("div");
-        bar.className = "brand-bar";
-
-        const text = document.createElement("span");
-        text.className = "brand-text";
-
-        const strong = document.createElement("strong");
-        strong.textContent = mainName;
-
-        text.appendChild(strong);
-
-        if (subName) {
-            const small = document.createElement("small");
-            small.textContent = `by ${subName}`;
-            text.appendChild(small);
-        }
-
-        bar.appendChild(text);
-        element.append(icon, bar);
-
-        element.dataset.brandReady = "true";
-    }
-
-    function startHaprovenLogo() {
-
-        injectBrandStyles();
-
-        document
-            .querySelectorAll(".haproven-brand")
-            .forEach(initBrand);
-    }
-
-    /* ========================================================
-       HEADER SCROLL HIDE / SHOW
-    ======================================================== */
-
-    function handleHeaderScroll() {
-
-        const header = document.getElementById("header");
-
-        if (!header) return;
-
-        const currentScroll = Math.max(
-            0,
-            window.scrollY || document.documentElement.scrollTop
-        );
-
-        if (currentScroll > lastScrollTop && currentScroll > 80) {
-            header.classList.add("hide");
-        } else if (currentScroll < lastScrollTop || currentScroll <= 10) {
-            header.classList.remove("hide");
-        }
-
-        lastScrollTop = currentScroll;
-    }
-
-    /* ========================================================
-       THEME SYSTEM
-       Compatible with original .dark-mode CSS
-    ======================================================== */
-
-    function getPreferredTheme() {
-
-        const saved = readStorage(CONFIG.themeKey);
-
-        if (saved === "dark" || saved === "light") {
-            return saved;
-        }
-
-        return window.matchMedia?.(
-            "(prefers-color-scheme: dark)"
-        ).matches ? "dark" : "light";
-    }
-
-    function updateThemeIcons() {
-
-        const dark = document.body.classList.contains("dark-mode");
-
-        document.querySelectorAll("#theme-toggle").forEach(button => {
-
-            const sun = button.querySelector(".sun");
-            const moon = button.querySelector(".moon");
-
-            if (sun) {
-                sun.style.display = dark ? "none" : "inline";
-            }
-
-            if (moon) {
-                moon.style.display = dark ? "inline" : "none";
-            }
-
-            button.setAttribute(
-                "aria-label",
-                dark ? "Switch to light mode" : "Switch to dark mode"
-            );
-        });
-    }
-
-    function setTheme(mode) {
-
-        const dark = mode === "dark";
-
-        document.body.classList.toggle("dark-mode", dark);
-
-        document.documentElement.classList.toggle("dark", dark);
-
-        document.documentElement.setAttribute(
-            "data-theme",
-            dark ? "dark" : "light"
-        );
-
-        writeStorage(
-            CONFIG.themeKey,
-            dark ? "dark" : "light"
-        );
-
-        updateThemeIcons();
-    }
-
-    function toggleTheme() {
-
-        const dark = document.body.classList.contains("dark-mode");
-
-        setTheme(dark ? "light" : "dark");
-    }
-
-    /* ========================================================
-       HINDI / ENGLISH LANGUAGE SYSTEM
-       Original data-hi Support
-    ======================================================== */
-
-    function applyLanguage() {
-
-        document.documentElement.lang = isHindi ? "hi" : "en";
-
-        document.querySelectorAll("[data-hi]").forEach(element => {
-
-            if (!originalEnglish.has(element)) {
-
-                originalEnglish.set(
-                    element,
-                    element.getAttribute("data-en") ??
-                    element.textContent
-                );
-            }
-
-            if (isHindi) {
-
-                element.textContent =
-                    element.getAttribute("data-hi") || "";
-
-            } else {
-
-                element.textContent =
-                    originalEnglish.get(element) || "";
-            }
-        });
-
-        document.querySelectorAll("#langBtn").forEach(button => {
-            button.textContent = isHindi ? "Eng." : "हिंदी";
-        });
-    }
-
-    function toggleLanguage() {
-
-        isHindi = !isHindi;
-
-        writeStorage(
-            CONFIG.languageKey,
-            isHindi ? "hi" : "en"
-        );
-
-        applyLanguage();
-    }
-
-    // Supports external language controls too.
-    window.toggleLanguage = toggleLanguage;
-    window.applyLanguage = applyLanguage;
-
-    /* ========================================================
-       SOCIAL LINKS FROM JSON
-       /Assets/json/side-link.json
-    ======================================================== */
-
-    let socialCache = null;
-    let socialRequest = null;
-
-    async function getSocialData() {
-
-        if (socialCache) return socialCache;
-
-        if (socialRequest) return socialRequest;
-
-        socialRequest = (async () => {
-
-            const response = await fetch(CONFIG.socialJSON);
-
-            if (!response.ok) {
-                throw new Error(`Social JSON HTTP ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            if (!Array.isArray(data.social_links)) {
-                throw new Error("social_links must be an array");
-            }
-
-            socialCache = data.social_links;
-
-            return socialCache;
-
-        })();
-
-        try {
-            return await socialRequest;
-        } finally {
-            socialRequest = null;
-        }
-    }
-
-    async function renderSocialLinks() {
-
-        const containers = document.querySelectorAll(
-            ".haproven-sosal-links"
-        );
-
-        if (!containers.length) return;
-
-        try {
-
-            const links = await getSocialData();
-
-            // Find containers again after fetch completes.
-            document.querySelectorAll(
-                ".haproven-sosal-links"
-            ).forEach(container => {
-
-                container.replaceChildren();
-
-                links.forEach(item => {
-
-                    if (!item.is_active || !item.url) return;
-
-                    let url;
-
-                    try {
-                        url = new URL(item.url, location.href);
-
-                        if (!["http:", "https:"].includes(url.protocol)) {
-                            return;
-                        }
-                    } catch {
-                        return;
-                    }
-
-                    const link = document.createElement("a");
-
-                    link.href = url.href;
-                    link.target = "_blank";
-                    link.rel = "noopener noreferrer";
-
-                    link.title = item.platform || "Social link";
-
-                    link.className = "social-link-item";
-
-                    link.setAttribute(
-                        "aria-label",
-                        item.platform || "Social link"
-                    );
-
-                    if (item.color) {
-                        link.style.setProperty(
-                            "--icon-color",
-                            item.color
-                        );
-                    }
-
-                    const icon = document.createElement("i");
-
-                    icon.className = item.icon || "fa-solid fa-link";
-
-                    icon.setAttribute("aria-hidden", "true");
-
-                    link.appendChild(icon);
-
-                    container.appendChild(link);
-                });
-            });
-
-        } catch (error) {
-
-            console.error(
-                "[Social Links] JSON loading failed:",
-                error
-            );
-
-            // Existing fallback HTML stays visible on failure.
-        }
-    }
-
-    /* ========================================================
-       MAIN AUDIO READER
-       Read only <main> content
-       Voice selection + Play / Stop
-    ======================================================== */
-
-    function speechSupported() {
-
-        return (
-            "speechSynthesis" in window &&
-            "SpeechSynthesisUtterance" in window
-        );
-    }
-
-    function loadVoice() {
-
-        if (!speechSupported()) return;
-
-        const voices = window.speechSynthesis.getVoices();
-
-        if (!voices.length) return;
-
-        const preferredLanguage = isHindi ? "hi-IN" : "en-IN";
-
-        selectedVoice =
-            voices.find(v => v.lang === preferredLanguage) ||
-            voices.find(v => v.lang === "en-IN") ||
-            voices.find(v => v.lang === "hi-IN") ||
-            voices.find(v => v.lang.startsWith("en")) ||
-            voices[0];
-    }
-
-    function updateAudioButton(active = false) {
-
-        if (!audioButton || !audioButton.isConnected) {
-            return;
-        }
-
-        const icon = audioButton.querySelector("i");
-        const label = audioButton.querySelector("span");
-
-        if (icon) {
-            icon.className = active
-                ? "fa-solid fa-stop"
-                : "fa-solid fa-volume-low";
-        }
-
-        if (label) {
-            label.textContent = active ? "Stop" : "Audio";
-        }
-
-        audioButton.classList.toggle(
-            "audio-playing",
-            active
-        );
-
-        audioButton.setAttribute(
-            "aria-label",
-            active ? "Stop audio" : "Read page aloud"
-        );
-    }
-
-    function stopAudio() {
-
-        speechSession++;
-
-        if (speechSupported()) {
-            window.speechSynthesis.cancel();
-        }
-
-        currentSpeech = null;
-
-        updateAudioButton(false);
-    }
-
-    function toggleAudio(event) {
-
-        event?.preventDefault();
-
-        if (!speechSupported()) {
-
-            console.warn(
-                "[Audio] Speech synthesis not supported."
-            );
-
-            return;
-        }
-
-        if (currentSpeech) {
-
-            stopAudio();
-
-            return;
-        }
-
-        const main = document.querySelector("main");
-
-        if (!main) {
-
-            console.warn("[Audio] <main> not found.");
-
-            return;
-        }
-
-        const text = (main.innerText || main.textContent || "")
-            .replace(/\s+/g, " ")
-            .trim();
-
-        if (!text) {
-
-            console.warn("[Audio] No readable text found.");
-
-            return;
-        }
-
-        window.speechSynthesis.cancel();
-
-        loadVoice();
-
-        const speech = new SpeechSynthesisUtterance(text);
-
-        if (selectedVoice) {
-
-            speech.voice = selectedVoice;
-            speech.lang = selectedVoice.lang;
-
-        } else {
-
-            speech.lang = isHindi ? "hi-IN" : "en-IN";
-        }
-
-        speech.rate = 0.95;
-        speech.pitch = 1;
-        speech.volume = 1;
-
-        const session = ++speechSession;
-
-        currentSpeech = speech;
-
-        speech.onstart = () => {
-
-            if (session === speechSession) {
-                updateAudioButton(true);
-            }
-        };
-
-        speech.onend = () => {
-
-            if (session !== speechSession) return;
-
-            currentSpeech = null;
-            updateAudioButton(false);
-        };
-
-        speech.onerror = error => {
-
-            if (session !== speechSession) return;
-
-            if (error.error !== "canceled") {
-                console.warn("[Audio] Speech error:", error.error);
-            }
-
-            currentSpeech = null;
-            updateAudioButton(false);
-        };
-
-        updateAudioButton(true);
-
-        window.speechSynthesis.speak(speech);
-    }
-
-    /* ========================================================
-       INITIALIZE HEADER
-    ======================================================== */
-
-    function initHeader() {
-
-        const header = document.getElementById("header");
-
-        if (!header) return false;
-
-        // Prevent duplicate listeners on the same element.
-        if (currentHeader === header) {
-            return true;
-        }
-
-        // Cleanup listeners from previous header.
-        if (headerController) {
-            headerController.abort();
-        }
-
-        if (currentSpeech) {
-            stopAudio();
-        }
-
-        const controller = new AbortController();
-        headerController = controller;
-
-        const { signal } = controller;
-
-        currentHeader = header;
-
-        /* ----------------------------------------------------
-           ELEMENT REFERENCES
-        ---------------------------------------------------- */
-
-        const menuBtn = header.querySelector("#dot6menu");
-
-        const dropdown = header.querySelector("#teamDropdown");
-
-        const toggleBtn = header.querySelector(
-            "#mobile-menu-toggle"
-        );
-
-        const nav = header.querySelector("#navbar-mobile");
-
-        const themeButton = header.querySelector("#theme-toggle");
-
-        const langButton = header.querySelector("#langBtn");
-
-        audioButton = header.querySelector("#main-audio-button");
-
-        /* ====================================================
-           6 DOT MENU
-        ==================================================== */
-
-        function closeAppsMenu() {
-
-            dropdown?.classList.remove("active");
-
-            menuBtn?.classList.remove("active");
-
-            menuBtn?.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-        }
-
-        function openAppsMenu() {
-
-            closeMobileMenu();
-
-            dropdown?.classList.add("active");
-
-            menuBtn?.classList.add("active");
-
-            menuBtn?.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-        }
-
-        function toggleAppsMenu() {
-
-            if (!dropdown) return;
-
-            if (dropdown.classList.contains("active")) {
-
-                closeAppsMenu();
-
-            } else {
-
-                openAppsMenu();
-            }
-        }
-
-        menuBtn?.setAttribute("aria-expanded", "false");
-
-        menuBtn?.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                toggleAppsMenu();
-            },
-            { signal }
-        );
-
-        /* ====================================================
-           MOBILE MENU
-           Original CSS uses .show
-        ==================================================== */
-
-        function closeMobileMenu() {
-
-            nav?.classList.remove("show");
-
-            toggleBtn?.classList.remove("active");
-
-            toggleBtn?.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            document.body.style.overflow = "";
-        }
-
-        function openMobileMenu() {
-
-            closeAppsMenu();
-
-            nav?.classList.add("show");
-
-            toggleBtn?.classList.add("active");
-
-            toggleBtn?.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-            document.body.style.overflow = "hidden";
-        }
-
-        function toggleMobileMenu() {
-
-            if (!nav) return;
-
-            if (nav.classList.contains("show")) {
-
-                closeMobileMenu();
-
-            } else {
-
-                openMobileMenu();
-            }
-        }
-
-        if (toggleBtn) {
-
-            toggleBtn.setAttribute("role", "button");
-            toggleBtn.setAttribute("tabindex", "0");
-
-            toggleBtn.setAttribute(
-                "aria-label",
-                "Toggle mobile menu"
-            );
-
-            toggleBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            toggleBtn.addEventListener(
-                "click",
-                event => {
-
-                    event.stopPropagation();
-
-                    toggleMobileMenu();
-                },
-                { signal }
-            );
-
-            toggleBtn.addEventListener(
-                "keydown",
-                event => {
-
-                    if (
-                        event.key === "Enter" ||
-                        event.key === " "
-                    ) {
-
-                        event.preventDefault();
-
-                        toggleMobileMenu();
-                    }
-                },
-                { signal }
-            );
-        }
-
-        /* ====================================================
-           CLOSE MENUS ON OUTSIDE CLICK
-        ==================================================== */
-
-        document.addEventListener(
-            "click",
-            event => {
-
-                const target = event.target;
-
-                if (
-                    dropdown &&
-                    menuBtn &&
-                    !dropdown.contains(target) &&
-                    !menuBtn.contains(target)
-                ) {
-                    closeAppsMenu();
-                }
-
-                if (
-                    nav &&
-                    toggleBtn &&
-                    !nav.contains(target) &&
-                    !toggleBtn.contains(target)
-                ) {
-                    closeMobileMenu();
-                }
-            },
-            { signal }
-        );
-
-        /* ====================================================
-           CLOSE MENUS WITH ESC
-        ==================================================== */
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (event.key === "Escape") {
-
-                    closeAppsMenu();
-
-                    closeMobileMenu();
-                }
-            },
-            { signal }
-        );
-
-        /* ====================================================
-           CLOSE MOBILE MENU ON LINK CLICK
-        ==================================================== */
-
-        nav?.addEventListener(
-            "click",
-            event => {
-
-                if (event.target.closest("a")) {
-                    closeMobileMenu();
-                }
-            },
-            { signal }
-        );
-
-        /* ====================================================
-           DROPDOWN SUPPORT
-        ==================================================== */
-
-        header.querySelectorAll(".dropdown").forEach(element => {
-
-            element.addEventListener(
-                "click",
-                event => {
-
-                    event.stopPropagation();
-
-                    element.classList.toggle("open");
-                },
-                { signal }
-            );
-        });
-
-        /* ====================================================
-           RESPONSIVE RESIZE
-        ==================================================== */
-
-        window.addEventListener(
-            "resize",
-            () => {
-
-                if (window.innerWidth > CONFIG.mobileBreakpoint) {
-                    closeMobileMenu();
-                }
-            },
-            { signal }
-        );
-
-        /* ====================================================
-           THEME BUTTON
-        ==================================================== */
-
-        themeButton?.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                toggleTheme();
-            },
-            { signal }
-        );
-
-        updateThemeIcons();
-
-        /* ====================================================
-           LANGUAGE BUTTON
-           Handles original inline onclick safely
-        ==================================================== */
-
-        const languageAction =
-            langButton?.closest(".action-box");
-
-        if (languageAction) {
-
-            languageAction.removeAttribute("onclick");
-
-            languageAction.addEventListener(
-                "click",
-                event => {
-
-                    event.preventDefault();
-
-                    toggleLanguage();
-                },
-                { signal }
-            );
-        }
-
-        /* ====================================================
-           AUDIO BUTTON
-        ==================================================== */
-
-        audioButton?.addEventListener(
-            "click",
-            toggleAudio,
-            { signal }
-        );
-
-        updateAudioButton(false);
-
-        /* ====================================================
-           REINITIALIZE DYNAMIC CONTENT
-        ==================================================== */
-
-        startHaprovenLogo();
-
-        applyLanguage();
-
-        renderSocialLinks();
-
-        handleHeaderScroll();
-
-        console.log(
-            "%cHaproven Header Initialized Successfully",
-            "color:#2563eb;font-weight:bold"
-        );
-
-        return true;
-    }
-
-    /* ========================================================
-       GLOBAL ACCESS FOR main.js
-    ======================================================== */
-
-    window.initHeader = initHeader;
-    window.setTheme = setTheme;
-    window.toggleTheme = toggleTheme;
-    window.renderSocialLinks = renderSocialLinks;
-    window.startHaprovenLogo = startHaprovenLogo;
-
-    /* ========================================================
-       INITIALIZE GENERAL PAGE FEATURES
-    ======================================================== */
-
-    function initGeneralFeatures() {
-
-        updateYear();
-
-        loadLivePage();
-
-        initFavicon();
-
-        startHaprovenLogo();
-
-        applyLanguage();
-
-        renderSocialLinks();
-
-        initHeader();
-    }
-
-    /* ========================================================
-       DYNAMIC SECTION LOADED
-    ======================================================== */
-
-    document.addEventListener(
-        "sectionLoaded",
-        event => {
-
-            const name = event.detail?.name;
-
-            if (name === "header") {
-                initHeader();
-            }
-
-            if (name === "footer") {
-                updateYear();
-            }
-
-            // Reapply translations to newly loaded sections.
-            applyLanguage();
-
-            loadLivePage();
-
-            startHaprovenLogo();
-
-            renderSocialLinks();
-        }
-    );
-
-    /* ========================================================
-       ALL WEBSITE SECTIONS LOADED
-    ======================================================== */
-
-    document.addEventListener(
-        "websiteLoaded",
-        () => {
-
-            initGeneralFeatures();
-        }
-    );
-
-    /* ========================================================
-       GLOBAL SCROLL LISTENER
-    ======================================================== */
-
-    window.addEventListener(
-        "scroll",
-        handleHeaderScroll,
-        { passive: true }
-    );
-
-    /* ========================================================
-       SPEECH VOICES
-    ======================================================== */
-
-    if (speechSupported()) {
-
-        window.speechSynthesis.addEventListener?.(
-            "voiceschanged",
-            loadVoice
-        );
-
-        loadVoice();
-    }
-
-    /* ========================================================
-       INITIAL THEME
-    ======================================================== */
-
-    function initializeTheme() {
-
-        setTheme(getPreferredTheme());
-    }
-
-    /* ========================================================
-       DOM READY
-    ======================================================== */
-
-    function start() {
-
-        initializeTheme();
-
-        initGeneralFeatures();
-    }
-
-    if (document.readyState === "loading") {
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            start,
-            { once: true }
-        );
-
-    } else {
-
-        start();
-    }
-
-})();
-
-
-
-
-
-
-
-
-
-/* =========================================================
-   HAPROVEN HEADER DATA LOADER
-   Dynamic HTML / Modular Single Page Compatible
-
-   JSON:
-   1. /external/json/hub-menu.json
-   2. /assets/json/side-link.json
-
-   Features:
-   - Haproven Ecosystem
-   - Live Text
-   - Social Links
-   - Header Navigation
-   - Mobile Navigation
-========================================================= */
-
-(() => {
-    "use strict";
-
-    /* =====================================================
-       JSON CONFIGURATION
-    ===================================================== */
-
-    const HUB_JSON_SOURCES = [
-        "https://raw.githubusercontent.com/codersusheel/haprobase/main/external/json/hub-menu.json",
-        "/external/json/hub-menu.json"
-    ];
-
-    const NAVIGATION_JSON = "/assets/json/side-link.json";
-
-    let hubData = null;
-    let hubRequest = null;
-
-    let navigationData = null;
-    let navigationRequest = null;
-
-    /* =====================================================
-       SAFE URL HELPER
-    ===================================================== */
 
     function safeURL(value) {
         if (typeof value !== "string" || !value.trim()) {
             return null;
         }
 
+        if (value.trim() === "#") return "#";
+
         try {
-            const url = new URL(value, window.location.href);
+            const url = new URL(value.trim(), location.href);
 
-            if (!["http:", "https:"].includes(url.protocol)) {
-                return null;
-            }
-
-            return url;
+            return ["http:", "https:"].includes(url.protocol)
+                ? url.href
+                : null;
         } catch {
             return null;
         }
     }
 
-    function setLinkURL(link, value) {
+    function setLink(anchor, value) {
         const url = safeURL(value);
-
         if (!url) return false;
 
-        link.href = url.href;
+        anchor.href = url;
 
-        if (url.origin !== window.location.origin) {
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
+        if (url !== "#") {
+            const parsed = new URL(url);
+
+            if (parsed.origin !== location.origin) {
+                anchor.target = "_blank";
+                anchor.rel = "noopener noreferrer";
+            }
         }
 
         return true;
     }
 
-    function createIcon(iconClass) {
-        const icon = document.createElement("i");
+    function icon(name = "fa-link") {
+        const element = document.createElement("i");
+        const value = String(name).trim();
 
-        const classes = String(iconClass || "").trim();
+        element.className =
+            value.includes(" ") || value.startsWith("ri-")
+                ? value
+                : value.startsWith("fa-")
+                    ? `fa-solid ${value}`
+                    : value;
 
-        if (classes) {
-            icon.className = classes.includes(" ")
-                ? classes
-                : `fa ${classes}`;
-        }
+        element.setAttribute("aria-hidden", "true");
 
-        icon.setAttribute("aria-hidden", "true");
-
-        return icon;
+        return element;
     }
 
-    function createNavigationLink(item, className = "") {
-        const link = document.createElement("a");
+    function normalizePath(path) {
+        let value = String(path || "/")
+            .replace(/\/index\.html$/i, "/")
+            .replace(/\/+/g, "/");
 
-        if (!setLinkURL(link, item.url)) {
-            return null;
+        if (value.length > 1) {
+            value = value.replace(/\/$/, "");
         }
 
-        if (className) {
-            link.className = className;
+        return value;
+    }
+
+    function isActive(url) {
+        const href = safeURL(url);
+
+        if (!href || href === "#") return false;
+
+        const target = new URL(href);
+
+        return (
+            target.origin === location.origin &&
+            normalizePath(target.pathname) === normalizePath(location.pathname) &&
+            (!target.hash || target.hash === location.hash)
+        );
+    }
+
+    /* ========================================================
+       06. SHARED JSON LOADER
+       Both JSON files are managed here.
+    ======================================================== */
+
+    async function fetchSources(sources, validate) {
+        let lastError = null;
+
+        for (const source of sources) {
+            try {
+                const response = await fetch(source, {
+                    cache: "no-cache",
+                    headers: { Accept: "application/json" }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (!validate(data)) {
+                    throw new Error("Invalid JSON structure");
+                }
+
+                return data;
+            } catch (error) {
+                lastError = error;
+                log("JSON", `Failed: ${source}`, error);
+            }
         }
+
+        throw lastError || new Error("No JSON source available");
+    }
+
+    function getData(type, force = false) {
+        if (!CONFIG[type]) {
+            return Promise.reject(new Error(`Unknown data type: ${type}`));
+        }
+
+        if (!force && state.data[type]) {
+            return Promise.resolve(state.data[type]);
+        }
+
+        if (state.requests[type]) {
+            return state.requests[type];
+        }
+
+        const validator = type === "navigation"
+            ? data => Array.isArray(data?.navigation_system)
+            : data => (
+                data &&
+                typeof data === "object" &&
+                (
+                    Array.isArray(data["hub-menu"]) ||
+                    Array.isArray(data.social_links) ||
+                    typeof data.liveText === "string"
+                )
+            );
+
+        state.requests[type] = fetchSources(
+            CONFIG[type],
+            validator
+        ).then(data => {
+            state.data[type] = data;
+            return data;
+        }).finally(() => {
+            state.requests[type] = null;
+        });
+
+        return state.requests[type];
+    }
+
+    /* ========================================================
+       07. NAVIGATION LINK
+    ======================================================== */
+
+    function makeNavLink(item, className = "", dropdown = false) {
+        if (!item || typeof item !== "object") return null;
+
+        const anchor = document.createElement("a");
+        const href = item.url || item.href || (dropdown ? "#" : null);
+
+        if (!setLink(anchor, href)) return null;
+
+        if (className) anchor.className = className;
 
         if (item.icon) {
-            link.appendChild(createIcon(item.icon));
+            anchor.appendChild(icon(item.icon));
         }
 
         const label = document.createElement("span");
-        label.textContent = item.name || "Untitled";
+        label.textContent = item.name || item.title || "Untitled";
+        anchor.appendChild(label);
 
-        link.appendChild(label);
-
-        return link;
-    }
-
-    /* =====================================================
-       FETCH HUB JSON WITH FALLBACK
-    ===================================================== */
-
-    async function getHubData() {
-        if (hubData) return hubData;
-        if (hubRequest) return hubRequest;
-
-        hubRequest = (async () => {
-            for (const source of HUB_JSON_SOURCES) {
-                try {
-                    const response = await fetch(source, {
-                        cache: "no-cache"
-                    });
-
-                    if (!response.ok) continue;
-
-                    const data = await response.json();
-
-                    if (
-                        data &&
-                        typeof data === "object" &&
-                        (
-                            Array.isArray(data["hub-menu"]) ||
-                            Array.isArray(data.social_links) ||
-                            typeof data.liveText === "string"
-                        )
-                    ) {
-                        hubData = data;
-                        return data;
-                    }
-
-                } catch (error) {
-                    console.warn(
-                        "Failed to load hub JSON:",
-                        source,
-                        error
-                    );
-                }
-            }
-
-            throw new Error("All hub JSON sources failed");
-        })();
-
-        try {
-            return await hubRequest;
-        } finally {
-            hubRequest = null;
+        if (isActive(href)) {
+            anchor.classList.add("active");
+            anchor.setAttribute("aria-current", "page");
         }
+
+        return anchor;
     }
 
-    /* =====================================================
-       1. HAPROVEN ECOSYSTEM
-       Target: #by-haproven
-    ===================================================== */
+    /* ========================================================
+       08. CREATE DESKTOP / MOBILE ITEMS
+    ======================================================== */
 
-    async function loadByHaproven() {
-        if (!document.getElementById("by-haproven")) return;
+    function makeNavItem(item, mobile = false) {
+        if (!item || typeof item !== "object") return null;
 
-        try {
-            const data = await getHubData();
-            const menu = data["hub-menu"];
+        const children = Array.isArray(item.dropdown_items)
+            ? item.dropdown_items
+            : [];
 
-            if (!Array.isArray(menu)) return;
+        const isDropdown = children.length > 0;
 
-            const container =
-                document.getElementById("by-haproven");
+        const li = document.createElement("li");
+        li.className = mobile ? "mobile-nav-item" : "nav-item";
 
-            if (!container) return;
+        const link = makeNavLink(
+            item,
+            isDropdown ? "dropdown-toggle" : "nav-link",
+            isDropdown
+        );
 
-            const fragment = document.createDocumentFragment();
+        if (!link) return null;
 
-            menu.forEach(item => {
-                if (!item.name || !item.url) return;
+        li.appendChild(link);
 
-                const li = document.createElement("li");
-                const link = document.createElement("a");
+        if (isDropdown) {
+            li.classList.add("dropdown");
 
-                if (!setLinkURL(link, item.url)) return;
+            const submenu = document.createElement("ul");
+            submenu.className = "dropdown-menu";
 
-                link.className = "member-box";
+            children.forEach(child => {
+                const childLink = makeNavLink(child);
+                if (!childLink) return;
 
-                if (item.img) {
-                    const imageURL = safeURL(item.img);
+                const childLi = document.createElement("li");
 
-                    if (imageURL) {
-                        const image = document.createElement("img");
-
-                        image.src = imageURL.href;
-                        image.alt = item.name;
-                        image.loading = "lazy";
-
-                        link.appendChild(image);
-                    }
+                if (mobile) {
+                    childLi.className = "mobile-sub-item";
                 }
 
-                const name = document.createElement("span");
-                name.textContent = item.name;
-
-                link.appendChild(name);
-                li.appendChild(link);
-                fragment.appendChild(li);
+                childLi.appendChild(childLink);
+                submenu.appendChild(childLi);
             });
 
-            container.replaceChildren(fragment);
+            if (submenu.children.length) {
+                link.classList.add("dropdown-toggle");
+                link.setAttribute("aria-expanded", "false");
+                link.appendChild(icon("fa-solid fa-chevron-down"));
 
-        } catch (error) {
-            console.error("Failed to load hub-menu:", error);
-            // Keep original HTML fallback.
-        }
-    }
+                li.appendChild(submenu);
 
-    /* =====================================================
-       2. HAPROVEN LIVE TEXT
-       Target: #live-text
-    ===================================================== */
+                if (submenu.querySelector(".active")) {
+                    li.classList.add("has-active-child");
 
-    async function loadLiveText() {
-        if (!document.getElementById("live-text")) return;
-
-        try {
-            const data = await getHubData();
-
-            if (!data.liveText) return;
-
-            const element = document.getElementById("live-text");
-
-            if (element) {
-                element.textContent = data.liveText;
-            }
-
-        } catch (error) {
-            console.warn("Failed to load liveText:", error);
-        }
-    }
-
-    /* =====================================================
-       3. HAPROVEN SOCIAL LINKS
-       Target: .haproven-sosal-links
-    ===================================================== */
-
-    async function loadSocialLinks() {
-        if (
-            !document.querySelector(".haproven-sosal-links")
-        ) {
-            return;
-        }
-
-        try {
-            const data = await getHubData();
-            const links = data.social_links;
-
-            if (!Array.isArray(links)) return;
-
-            document.querySelectorAll(
-                ".haproven-sosal-links"
-            ).forEach(container => {
-                const fragment =
-                    document.createDocumentFragment();
-
-                const isList =
-                    container.tagName.toLowerCase() === "ul";
-
-                links.forEach(item => {
-                    if (
-                        !item.platform ||
-                        !item.url ||
-                        !item.icon ||
-                        item.is_active !== true
-                    ) {
-                        return;
+                    if (mobile) {
+                        li.classList.add("open");
+                        link.setAttribute("aria-expanded", "true");
                     }
-
-                    const link = document.createElement("a");
-
-                    if (!setLinkURL(link, item.url)) return;
-
-                    link.target = "_blank";
-                    link.rel = "noopener noreferrer";
-                    link.title = item.platform;
-                    link.setAttribute(
-                        "aria-label",
-                        item.platform
-                    );
-
-                    const icon = document.createElement("i");
-                    icon.className = item.icon;
-
-                    link.appendChild(icon);
-
-                    if (isList) {
-                        const li = document.createElement("li");
-                        li.appendChild(link);
-                        fragment.appendChild(li);
-                    } else {
-                        fragment.appendChild(link);
-                    }
-                });
-
-                container.replaceChildren(fragment);
-            });
-
-        } catch (error) {
-            console.warn("Failed to load social links:", error);
-            // Keep original HTML fallback.
+                }
+            } else {
+                li.classList.remove("dropdown");
+                link.classList.remove("dropdown-toggle");
+            }
         }
+
+        return li;
     }
 
-    /* =====================================================
-       FETCH NAVIGATION JSON
-    ===================================================== */
+    /* ========================================================
+       09. RENDER NAVIGATION
+    ======================================================== */
 
-    async function getNavigationData() {
-        if (navigationData) return navigationData;
-        if (navigationRequest) return navigationRequest;
+    function renderNavigation(data) {
+        const desktop = $("#header-links");
+        const mobile = $("#mobile-sidebar");
 
-        navigationRequest = (async () => {
-            const response = await fetch(NAVIGATION_JSON, {
-                cache: "no-cache"
-            });
+        if (!desktop && !mobile) return;
 
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
+        const desktopFragment = document.createDocumentFragment();
+        const mobileFragment = document.createDocumentFragment();
 
-            const data = await response.json();
-
-            if (!Array.isArray(data.navigation_system)) {
-                throw new Error("Invalid navigation_system JSON");
-            }
-
-            navigationData = data.navigation_system;
-
-            return navigationData;
-        })();
-
-        try {
-            return await navigationRequest;
-        } finally {
-            navigationRequest = null;
-        }
-    }
-
-    /* =====================================================
-       4. HEADER + MOBILE NAVIGATION
-    ===================================================== */
-
-    function renderNavigation(navigationSystem) {
-        const headerContainer =
-            document.getElementById("header-links");
-
-        const mobileContainer =
-            document.getElementById("mobile-sidebar");
-
-        const headerFragment =
-            document.createDocumentFragment();
-
-        const mobileFragment =
-            document.createDocumentFragment();
-
-        navigationSystem.forEach(category => {
-            const items = Array.isArray(category.items)
+        data.navigation_system.forEach(category => {
+            const items = Array.isArray(category?.items)
                 ? category.items
                 : [];
 
@@ -1697,165 +437,1057 @@
                     ? item.placements
                     : [];
 
-                /* ==========================================
-                   HEADER NAVIGATION
-                ========================================== */
-
                 if (placements.includes("header")) {
-                    const li = document.createElement("li");
+                    const element = makeNavItem(item, false);
 
-                    if (
-                        item.type === "dropdown" &&
-                        Array.isArray(item.dropdown_items)
-                    ) {
-                        li.className = "nav-item dropdown";
-
-                        const link = createNavigationLink(
-                            item,
-                            "dropdown-toggle"
-                        );
-
-                        if (link) {
-                            link.appendChild(
-                                createIcon("fa fa-chevron-down")
-                            );
-
-                            li.appendChild(link);
-
-                            const submenu =
-                                document.createElement("ul");
-
-                            submenu.className = "dropdown-menu";
-
-                            item.dropdown_items.forEach(sub => {
-                                const subLink =
-                                    createNavigationLink(sub);
-
-                                if (!subLink) return;
-
-                                const subLi =
-                                    document.createElement("li");
-
-                                subLi.appendChild(subLink);
-                                submenu.appendChild(subLi);
-                            });
-
-                            li.appendChild(submenu);
-                            headerFragment.appendChild(li);
-                        }
-
-                    } else {
-                        const link = createNavigationLink(
-                            item,
-                            "nav-link"
-                        );
-
-                        if (link) {
-                            li.appendChild(link);
-                            headerFragment.appendChild(li);
-                        }
-                    }
+                    if (element) desktopFragment.appendChild(element);
                 }
 
-                /* ==========================================
-                   MOBILE SIDEBAR
-                ========================================== */
-
                 if (placements.includes("sidebar_mobile")) {
-                    const li = document.createElement("li");
-                    const link = createNavigationLink(item);
+                    const element = makeNavItem(item, true);
 
-                    if (link) {
-                        li.appendChild(link);
-                        mobileFragment.appendChild(li);
-                    }
-
-                    if (Array.isArray(item.dropdown_items)) {
-                        item.dropdown_items.forEach(sub => {
-                            const subLink =
-                                createNavigationLink(sub);
-
-                            if (!subLink) return;
-
-                            const subLi =
-                                document.createElement("li");
-
-                            subLi.className = "mobile-sub-item";
-                            subLi.appendChild(subLink);
-
-                            mobileFragment.appendChild(subLi);
-                        });
-                    }
+                    if (element) mobileFragment.appendChild(element);
                 }
             });
         });
 
-        if (headerContainer) {
-            headerContainer.replaceChildren(headerFragment);
+        // Replace dummy HTML only when real items exist.
+        if (desktop && desktopFragment.childNodes.length) {
+            desktop.replaceChildren(desktopFragment);
         }
 
-        if (mobileContainer) {
-            mobileContainer.replaceChildren(mobileFragment);
+        if (mobile && mobileFragment.childNodes.length) {
+            mobile.replaceChildren(mobileFragment);
         }
     }
 
     async function loadNavigation() {
+        if (!$("#header-links") && !$("#mobile-sidebar")) return;
+
+        try {
+            const data = await getData("navigation");
+            renderNavigation(data);
+        } catch (error) {
+            log("Navigation", "Keeping existing HTML", error);
+        }
+    }
+
+    /* ========================================================
+       10. HAPROVEN ECOSYSTEM
+       Target: #by-haproven
+    ======================================================== */
+
+    async function loadEcosystem() {
+        const container = $("#by-haproven");
+        if (!container) return;
+
+        try {
+            const data = await getData("hub");
+            const items = data["hub-menu"];
+
+            if (!Array.isArray(items)) return;
+
+            const fragment = document.createDocumentFragment();
+
+            items.forEach(item => {
+                if (!item?.name || !item?.url) return;
+
+                const li = document.createElement("li");
+                const anchor = document.createElement("a");
+
+                if (!setLink(anchor, item.url)) return;
+
+                anchor.className = "member-box";
+
+                const imageURL = safeURL(item.img);
+
+                if (imageURL && imageURL !== "#") {
+                    const image = document.createElement("img");
+
+                    image.src = imageURL;
+                    image.alt = item.name;
+                    image.loading = "lazy";
+
+                    anchor.appendChild(image);
+                }
+
+                const label = document.createElement("span");
+                label.textContent = item.name;
+
+                anchor.appendChild(label);
+                li.appendChild(anchor);
+                fragment.appendChild(li);
+            });
+
+            if (fragment.childNodes.length) {
+                container.replaceChildren(fragment);
+            }
+        } catch (error) {
+            log("Ecosystem", "Keeping existing HTML", error);
+        }
+    }
+
+    /* ========================================================
+       11. SOCIAL ICONS
+       Target: #header .haproven-sosal-links
+    ======================================================== */
+
+    async function loadSocial() {
+        const containers = $$("#header .haproven-sosal-links");
+
+        if (!containers.length) return;
+
+        try {
+            const data = await getData("hub");
+
+            if (!Array.isArray(data.social_links)) return;
+
+            containers.forEach(container => {
+                const fragment = document.createDocumentFragment();
+                const isList = container.tagName === "UL";
+
+                data.social_links.forEach(item => {
+                    if (
+                        !item ||
+                        item.is_active === false ||
+                        !item.platform ||
+                        !item.url ||
+                        !item.icon
+                    ) return;
+
+                    const url = safeURL(item.url);
+                    if (!url || url === "#") return;
+
+                    const anchor = document.createElement("a");
+
+                    anchor.href = url;
+                    anchor.target = "_blank";
+                    anchor.rel = "noopener noreferrer";
+                    anchor.className = "social-link-item";
+                    anchor.title = item.platform;
+                    anchor.setAttribute("aria-label", item.platform);
+
+                    const socialIcon = icon(item.icon);
+
+                    if (item.color) {
+                        socialIcon.style.color = item.color;
+                        anchor.style.setProperty(
+                            "--icon-color",
+                            item.color
+                        );
+                    }
+
+                    anchor.appendChild(socialIcon);
+
+                    if (isList) {
+                        const li = document.createElement("li");
+                        li.appendChild(anchor);
+                        fragment.appendChild(li);
+                    } else {
+                        fragment.appendChild(anchor);
+                    }
+                });
+
+                if (fragment.childNodes.length) {
+                    container.replaceChildren(fragment);
+                }
+            });
+        } catch (error) {
+            log("Social", "Keeping existing HTML", error);
+        }
+    }
+
+    /* ========================================================
+       12. OPTIONAL LIVE TEXT
+    ======================================================== */
+
+    async function loadLiveText() {
+        const element = $("#live-text");
+        if (!element) return;
+
+        try {
+            const data = await getData("hub");
+
+            if (typeof data.liveText === "string") {
+                element.textContent = data.liveText;
+            }
+        } catch (error) {
+            log("LiveText", "Unable to load", error);
+        }
+    }
+
+    /* ========================================================
+       13. THEME
+    ======================================================== */
+
+    function preferredTheme() {
+        const saved = readStorage(CONFIG.storage.theme);
+
+        if (saved === "dark" || saved === "light") {
+            return saved;
+        }
+
+        return window.matchMedia?.("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    }
+
+    function updateThemeButton() {
+        const button = $("#theme-toggle");
+        if (!button) return;
+
+        const dark = document.body.classList.contains("dark-mode");
+
+        const sun = $(".sun", button);
+        const moon = $(".moon", button);
+
+        if (sun) sun.style.display = dark ? "none" : "inline";
+        if (moon) moon.style.display = dark ? "inline" : "none";
+    }
+
+    function setTheme(mode, save = true) {
+        const dark = mode === "dark";
+
+        document.body.classList.toggle("dark-mode", dark);
+        document.documentElement.classList.toggle("dark", dark);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+
+        if (save) {
+            saveStorage(
+                CONFIG.storage.theme,
+                dark ? "dark" : "light"
+            );
+        }
+
+        updateThemeButton();
+    }
+
+    function toggleTheme() {
+        setTheme(
+            document.body.classList.contains("dark-mode")
+                ? "light"
+                : "dark"
+        );
+    }
+
+    /* ========================================================
+       14. LANGUAGE
+    ======================================================== */
+
+    function applyLanguage(root = document) {
+        const elements = [];
+
+        if (root instanceof Element && root.matches("[data-hi]")) {
+            elements.push(root);
+        }
+
+        root.querySelectorAll?.("[data-hi]").forEach(element => {
+            elements.push(element);
+        });
+
+        elements.forEach(element => {
+            if (!englishText.has(element)) {
+                englishText.set(
+                    element,
+                    element.getAttribute("data-en") ?? element.textContent
+                );
+            }
+
+            element.textContent = state.language === "hi"
+                ? element.getAttribute("data-hi") || ""
+                : englishText.get(element);
+        });
+
+        document.documentElement.lang = state.language;
+
+        $$("#langBtn").forEach(button => {
+            button.textContent = state.language === "hi"
+                ? "Eng."
+                : "हिंदी";
+        });
+    }
+
+    function toggleLanguage() {
+        state.language = state.language === "hi" ? "en" : "hi";
+
+        saveStorage(CONFIG.storage.language, state.language);
+
+        stopAudio();
+        applyLanguage();
+    }
+
+    /* ========================================================
+       15. PAGE AUDIO READER
+       Long text is divided into smaller chunks.
+    ======================================================== */
+
+    function audioSupported() {
+        return (
+            "speechSynthesis" in window &&
+            "SpeechSynthesisUtterance" in window
+        );
+    }
+
+    function chooseVoice() {
+        const voices = speechSynthesis.getVoices();
+
+        const preferred = state.language === "hi"
+            ? "hi-IN"
+            : "en-IN";
+
+        return (
+            voices.find(v => v.lang === preferred) ||
+            voices.find(v => v.lang.startsWith(state.language)) ||
+            voices.find(v => v.lang.startsWith("en")) ||
+            voices[0] ||
+            null
+        );
+    }
+
+    function updateAudioButton() {
+        const button = $("#main-audio-button");
+        if (!button) return;
+
+        const playing = state.audio.active;
+
+        const iconElement = $("i", button);
+        const label = $("span", button);
+
+        if (iconElement) {
+            iconElement.className = playing
+                ? "fa-solid fa-stop"
+                : "fa-solid fa-volume-low";
+        }
+
+        if (label) {
+            label.textContent = playing ? "Stop" : "Audio";
+        }
+
+        button.classList.toggle("audio-playing", playing);
+        button.setAttribute("aria-label", playing ? "Stop audio" : "Read page");
+    }
+
+    function splitText(text, maxLength) {
+        const sentences = text.match(/[^.!?।]+[.!?।]*/g) || [text];
+        const chunks = [];
+        let current = "";
+
+        sentences.forEach(sentence => {
+            const words = sentence.trim().split(/\s+/);
+
+            words.forEach(word => {
+                if (!word) return;
+
+                if ((current + " " + word).trim().length > maxLength) {
+                    if (current) chunks.push(current.trim());
+                    current = word;
+                } else {
+                    current += (current ? " " : "") + word;
+                }
+            });
+        });
+
+        if (current.trim()) chunks.push(current.trim());
+
+        return chunks;
+    }
+
+    function stopAudio() {
+        state.audio.token++;
+        state.audio.active = false;
+        state.audio.chunks = [];
+        state.audio.index = 0;
+
+        if (audioSupported()) {
+            speechSynthesis.cancel();
+        }
+
+        updateAudioButton();
+    }
+
+    function speakNext(token) {
         if (
-            !document.getElementById("header-links") &&
-            !document.getElementById("mobile-sidebar")
-        ) {
+            !state.audio.active ||
+            token !== state.audio.token
+        ) return;
+
+        if (state.audio.index >= state.audio.chunks.length) {
+            stopAudio();
             return;
         }
 
-        try {
-            const data = await getNavigationData();
-            renderNavigation(data);
+        const text = state.audio.chunks[state.audio.index++];
+        const speech = new SpeechSynthesisUtterance(text);
+        const voice = chooseVoice();
 
-        } catch (error) {
-            console.error("Navigation JSON Loading Error:", error);
-            // Keep original HTML fallback.
+        speech.lang = state.language === "hi" ? "hi-IN" : "en-IN";
+
+        if (voice) {
+            speech.voice = voice;
+            speech.lang = voice.lang;
         }
+
+        speech.rate = CONFIG.audio.rate;
+        speech.pitch = CONFIG.audio.pitch;
+        speech.volume = CONFIG.audio.volume;
+
+        speech.onend = () => speakNext(token);
+
+        speech.onerror = event => {
+            if (token !== state.audio.token) return;
+
+            log("Audio", `Speech error: ${event.error}`);
+            stopAudio();
+        };
+
+        speechSynthesis.speak(speech);
     }
 
-    /* =====================================================
-       HEADER DATA INITIALIZER
-    ===================================================== */
+    function toggleAudio() {
+        if (!audioSupported()) {
+            log("Audio", "Speech synthesis not supported");
+            return;
+        }
 
-    function initHeaderData() {
-        loadByHaproven();
-        loadLiveText();
-        loadSocialLinks();
+        if (state.audio.active) {
+            stopAudio();
+            return;
+        }
+
+        const main = $(CONFIG.audio.selector);
+
+        if (!main) {
+            log("Audio", "Main content not found");
+            return;
+        }
+
+        const text = (main.innerText || main.textContent || "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+        if (!text) {
+            log("Audio", "No readable text found");
+            return;
+        }
+
+        stopAudio();
+
+        state.audio.chunks = splitText(
+            text,
+            CONFIG.audio.chunkLength
+        );
+
+        state.audio.index = 0;
+        state.audio.active = true;
+
+        const token = state.audio.token;
+
+        updateAudioButton();
+        speakNext(token);
+    }
+
+    /* ========================================================
+       16. ANIMATED BRAND LOGO
+       Uses existing logo classes and styling.
+    ======================================================== */
+
+    function injectBrandCSS() {
+        if ($("#haproven-brand-style")) return;
+
+        const style = document.createElement("style");
+        style.id = "haproven-brand-style";
+
+        style.textContent = `
+            .haproven-brand {
+                display:flex;
+                align-items:center;
+                width:max-content;
+                cursor:pointer;
+                user-select:none;
+            }
+
+            .haproven-icon {
+                position:relative;
+                width:36px;
+                height:48px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-shrink:0;
+            }
+
+            .shadow-layer {
+                position:absolute;
+                width:33px;
+                height:45px;
+                top:-2px;
+                left:-2px;
+                opacity:.35;
+                background:linear-gradient(135deg,#bc1be7,#ffffff55);
+                clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%);
+                border-radius:6px 6px 0 0;
+            }
+
+            .main-bookmark {
+                position:relative;
+                width:30px;
+                height:42px;
+                background:linear-gradient(135deg,#bc1be7,#d94dff);
+                clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%);
+                border-radius:6px 6px 0 0;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                z-index:2;
+                box-shadow:0 7px 16px rgba(188,27,231,.30);
+            }
+
+            .haproven-icon svg {
+                width:32px;
+                height:32px;
+                margin-right:-4px;
+                fill:none;
+            }
+
+            .path-line {
+                stroke:#fff;
+                stroke-width:6;
+                stroke-linecap:round;
+                stroke-linejoin:round;
+                stroke-dasharray:260;
+                stroke-dashoffset:260;
+                animation:hapDraw 2.8s ease-in-out infinite;
+            }
+
+            .brand-bar {
+                min-height:30px;
+                padding:2px 7px;
+                display:flex;
+                align-items:center;
+                margin-left:-2px;
+                border-radius:0 8px 8px 0;
+                border:2px solid #bc1be7;
+                border-left:none;
+                backdrop-filter:blur(10px);
+            }
+
+            .brand-text {
+                display:flex;
+                flex-direction:column;
+                line-height:1;
+            }
+
+            .brand-text strong {
+                font-size:11px;
+                font-weight:900;
+                letter-spacing:.25px;
+            }
+
+            .brand-text small {
+                font-size:8px;
+                font-weight:600;
+                opacity:.7;
+                margin-top:2px;
+                text-transform:uppercase;
+            }
+
+            .haproven-brand.icon-only .brand-bar {
+                display:none;
+            }
+
+            @keyframes hapDraw {
+                0% {stroke-dashoffset:260;opacity:.6}
+                50% {stroke-dashoffset:0;opacity:1}
+                100% {stroke-dashoffset:-260;opacity:.6}
+            }
+        `;
+
+        document.head.appendChild(style);
+    }
+
+    function initBrand() {
+        const brands = $$("#header .haproven-brand");
+        if (!brands.length) return;
+
+        injectBrandCSS();
+
+        brands.forEach(element => {
+            if (element.dataset.brandReady === "true") return;
+
+            const fullName = element.dataset.name || "Haproven";
+            const parts = fullName.split(/\s+by\s+/i);
+
+            const name = parts[0]?.trim() || "Haproven";
+            const by = parts.slice(1).join(" by ").trim();
+
+            const symbol = document.createElement("div");
+            symbol.className = "haproven-icon";
+
+            const shadow = document.createElement("div");
+            shadow.className = "shadow-layer";
+
+            const bookmark = document.createElement("div");
+            bookmark.className = "main-bookmark";
+
+            bookmark.innerHTML = `
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <path class="path-line"
+                        d="M10 0 L10 70 A10 10 0 0 0 30 70
+                           L30 20 A10 10 0 0 1 50 20
+                           L50 70 A16 9 0 0 0 70 80
+                           A13 20 0 0 1 80 94 L100 95"/>
+                </svg>
+            `;
+
+            symbol.append(shadow, bookmark);
+
+            const bar = document.createElement("div");
+            bar.className = "brand-bar";
+
+            const text = document.createElement("span");
+            text.className = "brand-text";
+
+            const strong = document.createElement("strong");
+            strong.textContent = name;
+
+            text.appendChild(strong);
+
+            if (by) {
+                const small = document.createElement("small");
+                small.textContent = `by ${by}`;
+                text.appendChild(small);
+            }
+
+            bar.appendChild(text);
+
+            element.replaceChildren(symbol, bar);
+            element.dataset.brandReady = "true";
+        });
+    }
+
+    /* ========================================================
+       17. MENU CONTROLS
+    ======================================================== */
+
+    function closeAppsMenu() {
+        $("#teamDropdown")?.classList.remove("active");
+
+        const button = $("#dot6menu");
+        button?.classList.remove("active");
+        button?.setAttribute("aria-expanded", "false");
+    }
+
+    function closeMobileMenu() {
+        $("#navbar-mobile")?.classList.remove("show");
+
+        const button = $("#mobile-menu-toggle");
+        button?.classList.remove("active");
+        button?.setAttribute("aria-expanded", "false");
+
+        document.body.style.overflow = "";
+    }
+
+    function closeMenus() {
+        closeAppsMenu();
+        closeMobileMenu();
+    }
+
+    /* ========================================================
+       18. ALL HEADER EVENTS — ONE PLACE
+    ======================================================== */
+
+    function bindEvents(header) {
+        state.controller?.abort();
+
+        const controller = new AbortController();
+        state.controller = controller;
+
+        const { signal } = controller;
+
+        const appsButton = $("#dot6menu", header);
+        const appsMenu = $("#teamDropdown", header);
+
+        const mobileButton = $("#mobile-menu-toggle", header);
+        const mobileMenu = $("#navbar-mobile", header);
+
+        /* Six Dot Menu */
+
+        appsButton?.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const open = !appsMenu?.classList.contains("active");
+
+            closeMobileMenu();
+
+            appsMenu?.classList.toggle("active", open);
+            appsButton.classList.toggle("active", open);
+            appsButton.setAttribute("aria-expanded", String(open));
+        }, { signal });
+
+        /* Mobile Menu */
+
+        function toggleMobileMenu() {
+            if (!mobileMenu) return;
+
+            const open = !mobileMenu.classList.contains("show");
+
+            closeAppsMenu();
+
+            mobileMenu.classList.toggle("show", open);
+            mobileButton?.classList.toggle("active", open);
+            mobileButton?.setAttribute("aria-expanded", String(open));
+
+            document.body.style.overflow = open ? "hidden" : "";
+        }
+
+        if (mobileButton) {
+            mobileButton.setAttribute("role", "button");
+            mobileButton.setAttribute("tabindex", "0");
+            mobileButton.setAttribute("aria-expanded", "false");
+
+            mobileButton.addEventListener(
+                "click",
+                toggleMobileMenu,
+                { signal }
+            );
+
+            mobileButton.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    toggleMobileMenu();
+                }
+            }, { signal });
+        }
+
+        /* Dropdown Navigation */
+
+        header.addEventListener("click", event => {
+            const trigger = event.target.closest(".dropdown-toggle");
+
+            if (!trigger || !header.contains(trigger)) return;
+
+            const parent = trigger.closest(".dropdown");
+            const submenu = parent?.querySelector(".dropdown-menu");
+
+            if (!submenu) return;
+
+            event.preventDefault();
+
+            const open = !parent.classList.contains("open");
+
+            parent.classList.toggle("open", open);
+            trigger.setAttribute("aria-expanded", String(open));
+        }, { signal });
+
+        /* Mobile Link Click */
+
+        mobileMenu?.addEventListener("click", event => {
+            const link = event.target.closest("a");
+
+            if (link && !link.classList.contains("dropdown-toggle")) {
+                closeMobileMenu();
+            }
+        }, { signal });
+
+        /* Outside Click */
+
+        document.addEventListener("click", event => {
+            const target = event.target;
+
+            if (
+                appsButton &&
+                appsMenu &&
+                !appsButton.contains(target) &&
+                !appsMenu.contains(target)
+            ) {
+                closeAppsMenu();
+            }
+
+            if (
+                mobileButton &&
+                mobileMenu &&
+                !mobileButton.contains(target) &&
+                !mobileMenu.contains(target)
+            ) {
+                closeMobileMenu();
+            }
+        }, { signal });
+
+        /* Escape */
+
+        document.addEventListener("keydown", event => {
+            if (event.key !== "Escape") return;
+
+            closeMenus();
+
+            $$(".dropdown.open", header).forEach(item => {
+                item.classList.remove("open");
+
+                $(".dropdown-toggle", item)
+                    ?.setAttribute("aria-expanded", "false");
+            });
+        }, { signal });
+
+        /* Resize */
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > CONFIG.mobileBreakpoint) {
+                closeMobileMenu();
+            }
+        }, { signal });
+
+        /* Theme */
+
+        $("#theme-toggle", header)?.addEventListener("click", event => {
+            event.preventDefault();
+            toggleTheme();
+        }, { signal });
+
+        /* Language */
+
+        const languageAction = $("#langBtn", header)
+            ?.closest(".action-box");
+
+        if (languageAction) {
+            // Prevent duplicate toggling from inline onclick.
+            languageAction.removeAttribute("onclick");
+
+            languageAction.addEventListener("click", event => {
+                event.preventDefault();
+                toggleLanguage();
+            }, { signal });
+        }
+
+        /* Audio */
+
+        $("#main-audio-button", header)?.addEventListener("click", event => {
+            event.preventDefault();
+            toggleAudio();
+        }, { signal });
+
+        /* Login */
+
+        $("#login-action", header)?.addEventListener("click", event => {
+            if (
+                !event.currentTarget.getAttribute("href") ||
+                event.currentTarget.getAttribute("href") === "#"
+            ) {
+                event.preventDefault();
+                log("Login", "Configure the login URL in header HTML");
+            }
+        }, { signal });
+    }
+
+    /* ========================================================
+       19. HEADER SCROLL
+    ======================================================== */
+
+    function handleScroll() {
+        if (!CONFIG.hideOnScroll) return;
+
+        const header = $("#header");
+        if (!header) return;
+
+        const current = Math.max(0, window.scrollY || 0);
+
+        if (
+            current > state.lastScroll &&
+            current > CONFIG.scrollThreshold
+        ) {
+            header.classList.add("hide");
+        } else if (
+            current < state.lastScroll ||
+            current <= 10
+        ) {
+            header.classList.remove("hide");
+        }
+
+        state.lastScroll = current;
+    }
+
+    /* ========================================================
+       20. INITIALIZE EVERYTHING
+    ======================================================== */
+
+    function init() {
+        const header = $("#header");
+        if (!header) return false;
+
+        if (state.header !== header) {
+            state.header = header;
+            bindEvents(header);
+        }
+
+        initBrand();
+        updateThemeButton();
+        updateAudioButton();
+        applyLanguage(header);
+
+        // Independent loaders:
+        // One failure cannot stop the others.
         loadNavigation();
+        loadEcosystem();
+        loadSocial();
+        loadLiveText();
+
+        handleScroll();
+
+        return true;
     }
 
-    window.initHeaderData = initHeaderData;
+    /* ========================================================
+       21. REFRESH / RELOAD
+    ======================================================== */
 
-    /* =====================================================
-       DYNAMIC SECTION SUPPORT
-    ===================================================== */
+    async function reload(type = "all") {
+        const valid = ["all", "navigation", "hub"];
+
+        if (!valid.includes(type)) {
+            log("Reload", `Unknown type: ${type}`);
+            return;
+        }
+
+        const tasks = [];
+
+        if (type === "all" || type === "navigation") {
+            tasks.push(
+                getData("navigation", true)
+                    .then(data => renderNavigation(data))
+            );
+        }
+
+        if (type === "all" || type === "hub") {
+            tasks.push(
+                getData("hub", true).then(() =>
+                    Promise.all([
+                        loadEcosystem(),
+                        loadSocial(),
+                        loadLiveText()
+                    ])
+                )
+            );
+        }
+
+        const results = await Promise.allSettled(tasks);
+
+        results.forEach((result, index) => {
+            if (result.status === "rejected") {
+                log("Reload", `Task ${index + 1} failed`, result.reason);
+            }
+        });
+
+        return results;
+    }
+
+    /* ========================================================
+       22. PUBLIC API — CONTROL EVERYTHING HERE
+    ======================================================== */
+
+    const API = {
+        version: "7.0",
+        config: CONFIG,
+
+        init,
+        reload,
+        report,
+
+        navigation: loadNavigation,
+        ecosystem: loadEcosystem,
+        social: loadSocial,
+        liveText: loadLiveText,
+
+        theme: {
+            set: setTheme,
+            toggle: toggleTheme
+        },
+
+        language: {
+            toggle: toggleLanguage,
+            apply: applyLanguage
+        },
+
+        audio: {
+            toggle: toggleAudio,
+            stop: stopAudio
+        },
+
+        menus: {
+            close: closeMenus
+        },
+
+        logo: initBrand
+    };
+
+    window.HaprovenHeader = API;
+
+    /* Existing compatibility functions */
+
+    window.initHeader = init;
+    window.loadHeaderNavigation = loadNavigation;
+    window.loadByHaproven = loadEcosystem;
+    window.loadHeaderSocialLinks = loadSocial;
+    window.loadLiveText = loadLiveText;
+
+    window.toggleLanguage = toggleLanguage;
+    window.applyLanguage = applyLanguage;
+    window.toggleTheme = toggleTheme;
+    window.setTheme = setTheme;
+    window.startHaprovenLogo = initBrand;
+    window.stopHeaderAudio = stopAudio;
+
+    /* ========================================================
+       23. DYNAMIC SECTIONS
+    ======================================================== */
 
     document.addEventListener("sectionLoaded", event => {
         if (event.detail?.name === "header") {
-            initHeaderData();
+            init();
+            return;
+        }
+
+        const container = event.detail?.container;
+
+        if (container instanceof Element) {
+            applyLanguage(container);
+        }
+
+        if (state.audio.active) {
+            stopAudio();
         }
     });
 
     document.addEventListener("websiteLoaded", () => {
-        initHeaderData();
+        init();
+        applyLanguage();
     });
 
-    /* =====================================================
-       STATIC HEADER FALLBACK
-    ===================================================== */
+    window.addEventListener("hashchange", () => {
+        if (state.data.navigation) {
+            renderNavigation(state.data.navigation);
+        }
+    });
+
+    window.addEventListener("scroll", handleScroll, {
+        passive: true
+    });
+
+    /* ========================================================
+       24. START
+    ======================================================== */
+
+    function start() {
+        setTheme(preferredTheme(), false);
+        init();
+        applyLanguage();
+    }
 
     if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            initHeaderData,
-            { once: true }
-        );
+        document.addEventListener("DOMContentLoaded", start, {
+            once: true
+        });
     } else {
-        initHeaderData();
+        start();
     }
 
 })();

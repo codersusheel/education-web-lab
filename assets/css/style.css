@@ -1,13 +1,412 @@
-
-
 @import url(https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
 @import url(https://haprobase.netlify.app/external/css/base.css);
 /* @import url(https://haprobase.netlify.app/external/css/addon.css); */
 
 
-@import url(https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css);
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css);
+
 
 /* @import url(/assets/css/section/header.css); */
 
+@media (max-width: 1279px) {
+    .navbar-mobile {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        height: 75vh !important;
+        overflow: scroll;
+    }
+}
+
+
+
+@media (max-width: 1279px) {
+    .mobile-social {
+        display: flex;
+        justify-content: space-around;
+        overflow: scroll;
+        width: 160px;
+        gap: 25px;
+        position: fixed;
+        background: transparent !important;
+        scrollbar-width: none;
+    }
+}
+
+
+.mobile-nav-item span {
+    padding: 10px;
+
+}
+
+.nav-list span {
+    padding: 6px !important;
+}
+
+
+.submenu {
+    padding: 0px !important;
+}
+
+
+
+#liv-open-page {
+    opacity: 0.7;
+    padding: 5px;
+}
+
+
+#liv-open-page span {
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   HAPROVEN FOOTER
+   Responsive • Light/Dark • Single Footer
+========================================================== */
+
+.haproven-footer {
+
+    width: 100%;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    border-top: 1px solid rgb(159, 160, 159) !important;
+    font-family: inherit;
+
+
+}
+
+/* ================= DARK MODE ================= */
+
+html[data-theme="dark"] .haproven-footer,
+body.dark-mode .haproven-footer,
+body.dark .haproven-footer {
+    --footer-bg: #0b1220;
+    --footer-surface: #111827;
+    --footer-text: #f8fafc;
+    --footer-muted: #94a3b8;
+    --footer-border: #243044;
+    --footer-primary: #60a5fa;
+}
+
+/* ================= CONTAINER ================= */
+
+.haproven-footer .footer-container {
+    width: min(100% - 40px, 1250px);
+    margin-inline: auto;
+}
+
+/* ================= MAIN GRID ================= */
+
+.haproven-footer .footer-main {
+    display: grid;
+    grid-template-columns:
+        minmax(230px, 2fr) repeat(5, minmax(110px, 1fr));
+    gap: 30px;
+    padding: 55px 0 40px;
+}
+
+/* ================= BRAND ================= */
+
+.haproven-footer .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--footer-text);
+    font-size: 23px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.haproven-footer .footer-logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.haproven-footer .footer-description {
+    margin: 18px 0 14px;
+    color: var(--footer-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.haproven-footer .footer-tagline {
+    margin: 0;
+    color: var(--footer-primary);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+
+
+
+/* ================= COLUMNS ================= */
+
+.haproven-footer .footer-heading {
+    margin: 0 0 18px;
+    color: var(--footer-text);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.haproven-footer .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.haproven-footer .footer-links li {
+    margin-bottom: 11px;
+}
+
+.haproven-footer .footer-links a {
+    color: var(--footer-muted);
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.65;
+    transition: color 0.2s ease;
+}
+
+.haproven-footer .footer-links a:hover {
+    color: var(--footer-primary);
+}
+
+/* ================= SOCIAL ================= */
+
+.haproven-footer .footer-social {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--footer-border);
+}
+
+.haproven-footer .footer-social-info h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.haproven-footer .footer-social-info p {
+    margin: 0;
+    color: var(--footer-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.haproven-footer .social-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.haproven-footer .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--footer-surface);
+    color: var(--footer-text);
+    border: 1px solid var(--footer-border);
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.haproven-footer .social-links a:hover {
+    background: var(--footer-primary);
+    color: #ffffff;
+    border-color: var(--footer-primary);
+    transform: translateY(-2px);
+}
+
+/* ================= FOOTER BOTTOM ================= */
+
+.haproven-footer .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding: 22px 0;
+    border-top: 1px solid var(--footer-border);
+}
+
+.haproven-footer .footer-bottom p {
+    margin: 0;
+    color: var(--footer-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.haproven-footer .footer-bottom a {
+    color: var(--footer-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.haproven-footer .footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+.footer-main a:hover {
+
+    /* border: 1px solid; */
+    color: #60a5fa !important;
+    padding: 2px;
+
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration: underline;
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1150px) {
+    .haproven-footer .footer-main {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .haproven-footer .footer-brand {
+        grid-column: 1 / -1;
+        max-width: 550px;
+    }
+}
+
+/* ==========================================================
+   MOBILE
+   Hide Main + Social
+   Keep Footer Bottom Visible
+========================================================== */
+/* ==========================================
+   HAPROVEN MOBILE FOOTER — VERSION 2
+========================================== */
+
+@media (max-width: 768px) {
+
+    /* Hide desktop content */
+
+    .haproven-footer .footer-main,
+    .haproven-footer .footer-social {
+        display: none;
+    }
+
+    .haproven-footer .footer-container {
+        width: 100%;
+        padding: 0 14px;
+    }
+
+    /* Mobile footer card */
+
+    .haproven-footer .footer-bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 8px;
+
+        margin: 14px 0;
+        padding: 20px 16px 14px;
+
+        /* background: var(--footer-surface); */
+        /* border: 1px solid var(--footer-border); */
+        border-radius: 16px;
+
+        text-align: center;
+    }
+
+    /* Copyright — first row */
+
+    .haproven-footer .footer-copyright {
+        grid-column: 1 / -1;
+        padding-bottom: 14px;
+        /* border-bottom: 1px solid var(--footer-border); */
+
+        color: var(--footer-text);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.7;
+    }
+
+    /* Second row — left */
+
+    .haproven-footer .footer-made {
+        text-align: left;
+        font-size: 11px;
+        color: var(--footer-muted);
+    }
+
+    /* Second row — right */
+
+    .haproven-footer .footer-credit {
+        text-align: right;
+        font-size: 11px;
+        color: var(--footer-muted);
+    }
+
+    .haproven-footer .footer-credit a {
+        color: var(--footer-primary);
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    /* Very small phones */
+
+    @media (max-width: 360px) {
+
+        .haproven-footer .footer-bottom {
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+
+        .haproven-footer .footer-copyright {
+            grid-column: 1;
+        }
+
+        .haproven-footer .footer-made,
+        .haproven-footer .footer-credit {
+            text-align: center;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1279px) {
+    .header {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+}
