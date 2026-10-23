@@ -107,7 +107,7 @@
 
 /* ==========================================
    MODULAR WEBSITE SECTION LOADER
-   EXTERNAL HEADER VIA NETLIFY PROXY
+   External Vercel Header + Local Sections
 ========================================== */
 
 const sections = [
@@ -120,7 +120,8 @@ const sections = [
     "experience",
     "contact",
     "aside",
-    "footer"
+    "footer",
+    "footer1"
 ];
 
 /* ==========================================
@@ -129,7 +130,6 @@ const sections = [
 
 const externalSections = {
 
-    // Netlify proxy -> external website
     header: "https://education-web-lab.vercel.app/sections/header.html"
 
 };
@@ -152,22 +152,15 @@ async function loadSection(name) {
 
     try {
 
-        /* ==================================
-           INTERNAL OR EXTERNAL URL
-        ================================== */
-
         const url =
             externalSections[name] ||
             `/sections/${name}.html`;
 
-        console.log("Loading section:", name, url);
-
-        /* ==================================
-           FETCH HTML
-        ================================== */
+        console.log("Loading:", name, url);
 
         const response = await fetch(url, {
-            cache: "no-cache"
+            method: "GET",
+            cache: "no-store"
         });
 
         if (!response.ok) {
@@ -181,7 +174,7 @@ async function loadSection(name) {
         }
 
         /* ==================================
-           VALIDATE EXTERNAL HEADER
+           HEADER RESPONSE VALIDATION
         ================================== */
 
         if (name === "header") {
@@ -193,19 +186,19 @@ async function loadSection(name) {
 
             if (!doc.querySelector("header")) {
                 throw new Error(
-                    "External response does not contain a header element"
+                    "External response is not a valid Header fragment"
                 );
             }
         }
 
         /* ==================================
-           INSERT SECTION
+           INSERT HTML
         ================================== */
 
         container.innerHTML = html;
 
         /* ==================================
-           HEADER JS INITIALIZATION
+           HEADER INITIALIZATION
         ================================== */
 
         if (name === "header") {
@@ -219,7 +212,7 @@ async function loadSection(name) {
             } else {
 
                 console.warn(
-                    "Header HTML loaded, but initHeader() is missing"
+                    "Header loaded, but initHeader() not found"
                 );
             }
         }
