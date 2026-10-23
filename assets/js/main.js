@@ -130,7 +130,7 @@ const sections = [
 const externalSections = {
 
     // Netlify proxy -> external website
-    header: "https://ha-web-tool.netlify.app/sections/header.html"
+    header: "https://education-web-lab.vercel.app/sections/header.html"
 
 };
 
