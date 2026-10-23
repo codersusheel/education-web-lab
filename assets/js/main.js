@@ -1,13 +1,14 @@
 
 const sections = [
-    "header",
-    "hero",
-    "about",
-    "skills",
-    "services",
-    "projects",
-    "experience",
-    "contact",
+    // "header",
+    // "hero",
+    // "about",
+    // "skills",
+    // "services",
+    // "projects",
+    // "experience",
+    // "contact",
+    "aside",
     "footer"
 ];
 
