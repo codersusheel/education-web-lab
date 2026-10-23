@@ -1,57 +1,47 @@
 
-"use strict";
+const sections = [
+    "header",
+    "hero",
+    "about",
+    "skills",
+    "services",
+    "projects",
+    "experience",
+    "contact",
+    "footer"
+];
 
-/* ================= MOBILE NAVIGATION ================= */
+async function loadSection(name) {
+    const container = document.getElementById(name);
 
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
+    if (!container) return;
 
-if (menuToggle && navLinks) {
+    try {
+        const response = await fetch(`/sections/${name}.html`);
 
-    function closeMenu() {
-        navLinks.classList.remove("show");
-
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-
-        menuToggle.innerHTML =
-            '<i class="fa-solid fa-bars"></i>';
-    }
-
-    menuToggle.addEventListener("click", function () {
-
-        const isOpen = navLinks.classList.toggle("show");
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-        );
-
-        menuToggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close navigation" : "Open navigation"
-        );
-
-        menuToggle.innerHTML = isOpen
-            ? '<i class="fa-solid fa-xmark"></i>'
-            : '<i class="fa-solid fa-bars"></i>';
-    });
-
-    navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", closeMenu);
-    });
-
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            closeMenu();
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
         }
-    });
+
+        container.innerHTML = await response.text();
+
+        document.dispatchEvent(
+            new CustomEvent("sectionLoaded", {
+                detail: { name, container }
+            })
+        );
+
+    } catch (error) {
+        console.error(`Failed to load ${name}:`, error);
+    }
 }
 
-/* ================= COPYRIGHT YEAR ================= */
+async function loadWebsite() {
+    await Promise.all(sections.map(loadSection));
 
-const yearElement = document.getElementById("year");
-
-if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
+    document.dispatchEvent(
+        new Event("websiteLoaded")
+    );
 }
+
+document.addEventListener("DOMContentLoaded", loadWebsite);
