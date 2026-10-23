@@ -1,4 +1,3 @@
-
 /* ================= ROOT ================= */
 
 :root {
@@ -61,12 +60,10 @@ img {
 
 .hero-wrapper {
     position: relative;
-    background: linear-gradient(
-        125deg,
-        #5366c2 0%,
-        #697bd5 55%,
-        #5667bd 100%
-    );
+    background: linear-gradient(125deg,
+            #5366c2 0%,
+            #697bd5 55%,
+            #5667bd 100%);
     color: white;
     overflow: hidden;
 }
@@ -643,7 +640,7 @@ img {
         align-items: stretch;
         gap: 20px;
         background: var(--primary-dark);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
     }
 
     .nav-links.show {
@@ -750,18 +747,44 @@ img {
 
 
 
+/* ================= FOOTER SOCIAL MEDIA ================= */
 
+.footer-social-section {
+    margin-top: 20px;
+}
 
+.footer-social-section h3 {
+    margin-bottom: 15px;
+}
 
+.footer-social-section .social-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
 
+.footer-social-section .social-links a {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
 
+.footer-social-section .social-links a:hover {
+    background: #f3c747;
+    color: #24313c;
+    transform: translateY(-4px);
+}
 
-
-
-
-
-
-
-
-
-
+.footer-social-section .social-links a:focus-visible {
+    outline: 2px solid #f3c747;
+    outline-offset: 4px;
+}

@@ -2,20 +2,22 @@
 <html lang="en">
 
 <head>
+
     <!-- ================= BASIC SEO ================= -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Default SEO: website.json will update these values -->
-    <title>Services & Learning Programs | Institution Name</title>
+    <title>Bright Future Academy | Learn Today, Lead Tomorrow</title>
 
     <meta name="description"
-        content="Explore academic education, classroom learning, student guidance, skill development and educational services at Institution Name.">
+        content="Welcome to Bright Future Academy. Explore academic learning, student development, educational programs and opportunities for growth.">
 
-    <meta name="keywords" content="educational services, academic programs, classroom learning, student guidance">
+    <meta name="keywords"
+        content="Bright Future Academy, school website, education, learning programs, student development, academic excellence">
 
-    <meta name="author" content="Institution Name">
-    <meta name="publisher" content="Institution Name">
+    <meta name="author" content="Bright Future Academy">
+    <meta name="publisher" content="Bright Future Academy">
 
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-image-preview:large">
@@ -23,61 +25,56 @@
 
     <meta name="theme-color" content="#5969c7">
 
-    <!-- ================= CANONICAL ================= -->
-    <!--
-        Production canonical is managed using:
-        website.websiteUrl + seo.pages.services.path
-
-        Add a real canonical link in generated HTML
-        when the final website URL is known.
-    -->
-
     <!-- ================= OPEN GRAPH ================= -->
+
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Institution Name">
+    <meta property="og:site_name" content="Bright Future Academy">
     <meta property="og:locale" content="en_IN">
 
-    <meta property="og:title" content="Our Services & Programs | Institution Name">
+    <meta property="og:title" content="Bright Future Academy | Quality Education">
 
-    <meta property="og:description" content="Explore educational programs and student development opportunities.">
+    <meta property="og:description" content="Supporting students through education, creativity and growth.">
 
-    <meta property="og:image:alt" content="Educational programs at Institution Name">
+    <!-- ================= TWITTER ================= -->
 
-    <!--
-        og:url and og:image are added by website-data.js
-        when valid production values are configured.
-    -->
-
-    <!-- ================= TWITTER CARD ================= -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bright Future Academy">
+    <meta name="twitter:description" content="Learn Today, Lead Tomorrow.">
 
-    <meta name="twitter:title" content="Services & Programs | Institution Name">
+    <!-- ================= GOOGLE FONTS ================= -->
 
-    <meta name="twitter:description" content="Discover academic and learning services.">
-
-    <!-- ================= FONTS ================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- ================= ICONS ================= -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- ================= COMMON CSS ================= -->
-    <link rel="stylesheet" href="../assets/css/style.css">
 
-    <!-- ================= COMMON JS ================= -->
-    <script src="../assets/js/main.js" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- ================= JSON DATA LOADER ================= -->
-    <script src="../assets/js/website-data.js" defer></script>
+    <!-- ================= HOME PAGE CSS ================= -->
+
+
+    <!-- ================= COMMON JAVASCRIPT ================= -->
+
+    <script src="assets/js/main.js" defer></script>
+
+    <!-- ================= JSON WEBSITE LOADER ================= -->
+
+    <script src="assets/js/website-data.js" data-website-loader defer>
+    </script>
 
 </head>
 
-<body data-page="services">
+<body data-page="home">
 
-    <!-- ================= HEADER + HERO ================= -->
+    <!-- =====================================================
+         HEADER + HERO
+    ====================================================== -->
 
     <div class="hero-wrapper">
 
@@ -87,17 +84,19 @@
 
             <nav class="navbar container" aria-label="Main navigation">
 
-                <!-- ================= BRAND ================= -->
+                <!-- ================= LOGO ================= -->
 
-                <a href="/" class="logo">
+                <a href="./" class="logo">
 
                     <span class="logo-icon">
+
                         <i class="fa-solid fa-graduation-cap" data-logo-icon>
                         </i>
+
                     </span>
 
                     <span data-bind="website.shortName">
-                        Institution
+                        Bright Future
                     </span>
 
                 </a>
@@ -112,26 +111,25 @@
                 </button>
 
                 <!-- ================= NAVIGATION ================= -->
-                <!--
-                    Dummy links stay visible if JSON fails.
-                    website-data.js replaces them when
-                    navigation.items is available.
-                -->
 
                 <ul class="nav-links" id="navLinks">
 
                     <li>
-                        <a href="/" class="active" aria-current="page">Home</a>
+                        <a href="./" class="active" aria-current="page">
+                            Home
+                        </a>
                     </li>
 
                     <li>
-                        <a href="pages/services/" >
+                        <a href="pages/services/">
                             Services
                         </a>
                     </li>
 
                     <li>
-                        <a href="pages/about/">About</a>
+                        <a href="pages/about/">
+                            About
+                        </a>
                     </li>
 
                     <li>
@@ -146,35 +144,37 @@
 
         </header>
 
-        <!-- ================= SERVICES HERO ================= -->
+        <!-- ================= HOME HERO ================= -->
 
         <section class="hero container">
 
+            <!-- ================= HERO CONTENT ================= -->
+
             <div class="hero-content">
 
-                <span class="eyebrow" data-bind="services.hero.eyebrow">
-                    Education & Learning
+                <span class="eyebrow" data-bind="home.hero.eyebrow">
+                    Welcome to Bright Future Academy
                 </span>
 
-                <h1 data-bind="services.hero.title">
-                    Our Services
+                <h1 data-bind="home.hero.title">
+                    Learn Today, Lead Tomorrow.
                 </h1>
 
-                <p data-bind="services.hero.description">
-                    Explore our educational programs,
-                    learning opportunities and student support
-                    services designed to encourage academic
-                    growth and development.
+                <p data-bind="home.hero.description">
+                    At Bright Future Academy, we inspire young minds
+                    through meaningful education, creativity,
+                    practical learning and opportunities
+                    for personal growth.
                 </p>
 
-                <a href="#learning-programs" class="btn btn-yellow" data-link="services.hero.button.url"
-                    data-visible="services.hero.button.visible">
+                <a href="pages/services/" class="btn btn-yellow" data-link="home.hero.button.url"
+                    data-visible="home.hero.button.visible">
 
-                    <span data-bind="services.hero.button.text">
-                        Explore Services
+                    <span data-bind="home.hero.button.text">
+                        Explore Our Programs
                     </span>
 
-                    <i class="fa-solid fa-arrow-down"></i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </a>
 
@@ -185,8 +185,8 @@
             <div class="hero-image">
 
                 <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85"
-                    alt="Students learning in a classroom" data-image="services.hero.image"
-                    data-image-alt="services.hero.imageAlt" fetchpriority="high">
+                    alt="Students learning together in a classroom" data-image="home.hero.image"
+                    data-image-alt="home.hero.imageAlt" fetchpriority="high">
 
             </div>
 
@@ -204,101 +204,92 @@
 
     </div>
 
-    <!-- ================= MAIN CONTENT ================= -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
     <main>
 
-        <!-- ================= SERVICES OVERVIEW ================= -->
-        <!--
-            This section uses:
-            services.overview.enabled
-            services.overview.title
-            services.overview.description
-        -->
+        <!-- =================================================
+             SECTION 01 — WHY CHOOSE US
+        ================================================== -->
 
-        <section class="section" data-enabled="services.overview.enabled">
+        <section class="section" id="why-choose-us" data-enabled="home.features.enabled">
 
             <div class="container">
 
+                <!-- ================= SECTION HEADER ================= -->
+
                 <div class="section-header">
 
-                    <h2 data-bind="services.overview.title">
-                        Supporting Every Learning Journey
+                    <h2 data-bind="home.features.title">
+                        Why Choose Bright Future Academy?
                     </h2>
 
-                    <p data-bind="services.overview.description">
-                        We focus on creating educational experiences
-                        that support knowledge, confidence and
-                        student development.
+                    <p data-bind="home.features.description">
+                        Helping students build strong academic
+                        foundations, confidence and practical skills.
                     </p>
 
                 </div>
 
-                <!-- ================= SERVICE HIGHLIGHTS ================= -->
+                <!-- ================= FEATURES GRID ================= -->
 
-                <div class="features-grid" data-repeat="services.highlights">
+                <div class="features-grid" data-repeat="home.features.items">
 
-                    <!-- Dummy Highlight 01 -->
+                    <!-- ================= FEATURE 01 ================= -->
+
                     <article class="feature-card">
 
                         <div class="feature-icon">
                             <i class="fa-solid fa-book-open"></i>
                         </div>
 
-                        <h3>Academic Learning</h3>
+                        <h3>Quality Learning</h3>
 
                         <p>
-                            Subject knowledge and understanding.
+                            Engaging lessons designed to strengthen
+                            academic understanding and encourage curiosity.
                         </p>
 
                     </article>
 
-                    <!-- Dummy Highlight 02 -->
+                    <!-- ================= FEATURE 02 ================= -->
+
                     <article class="feature-card">
 
                         <div class="feature-icon">
-                            <i class="fa-solid fa-user-graduate"></i>
+                            <i class="fa-solid fa-chalkboard-user"></i>
                         </div>
 
-                        <h3>Student Support</h3>
+                        <h3>Dedicated Learning Support</h3>
 
                         <p>
-                            Guidance for learning and development.
+                            Guidance and educational support to help
+                            every learner develop confidence.
                         </p>
 
                     </article>
 
-                    <!-- Dummy Highlight 03 -->
-                    <article class="feature-card">
+                    <!-- ================= FEATURE 03 ================= -->
 
-                        <div class="feature-icon">
-                            <i class="fa-solid fa-lightbulb"></i>
-                        </div>
-
-                        <h3>Skill Development</h3>
-
-                        <p>
-                            Practical thinking and creativity.
-                        </p>
-
-                    </article>
-
-                    <!-- Dummy Highlight 04 -->
                     <article class="feature-card">
 
                         <div class="feature-icon">
                             <i class="fa-solid fa-users"></i>
                         </div>
 
-                        <h3>Learning Activities</h3>
+                        <h3>Holistic Development</h3>
 
                         <p>
-                            Participation and collaboration.
+                            Encouraging creativity, collaboration,
+                            communication and personal growth.
                         </p>
 
                     </article>
 
-                    <!-- JSON Highlight Template -->
+                    <!-- ================= JSON FEATURE TEMPLATE ================= -->
+
                     <template data-item-template>
 
                         <article class="feature-card">
@@ -311,11 +302,11 @@
                             </div>
 
                             <h3 data-item-text="title">
-                                Highlight Title
+                                Feature Title
                             </h3>
 
                             <p data-item-text="description">
-                                Highlight description.
+                                Feature description.
                             </p>
 
                         </article>
@@ -328,160 +319,55 @@
 
         </section>
 
-        <!-- ================= LEARNING PROGRAMS ================= -->
 
-        <section class="section" id="learning-programs" data-enabled="services.programs.enabled">
 
-            <div class="container">
 
-                <div class="section-header">
 
-                    <h2 data-bind="services.programs.title">
-                        Our Learning Programs
-                    </h2>
 
-                    <p data-bind="services.programs.description">
-                        We focus on providing meaningful learning
-                        experiences and educational support for students.
-                    </p>
+
+
+
+        <!-- =================================================
+             SECTION 02 — ABOUT PREVIEW
+        ================================================== -->
+
+        <section class="section about-section home-about" id="about-preview" data-enabled="home.aboutPreview.enabled">
+
+            <div class="container about-grid">
+
+                <!-- ================= ABOUT IMAGE ================= -->
+
+                <div class="about-image">
+
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85"
+                        alt="Students learning together in a classroom at Bright Future Academy"
+                        data-image="home.aboutPreview.image" loading="lazy">
 
                 </div>
 
-                <!-- ================= SERVICES GRID ================= -->
+                <!-- ================= ABOUT CONTENT ================= -->
 
-                <div class="services-grid" data-repeat="services.programs.items">
+                <div class="about-content">
 
-                    <!-- ================= DUMMY SERVICE 01 ================= -->
+                    <h2 data-bind="home.aboutPreview.title">
+                        A Place to Learn, Grow and Succeed
+                    </h2>
 
-                    <article class="service-card">
+                    <p data-bind="home.aboutPreview.description">
+                        Bright Future Academy is a fictional
+                        demonstration institution designed to showcase
+                        a modern school website and its educational features.
+                    </p>
 
-                        <div class="service-icon">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
+                    <a href="pages/about/" class="btn btn-purple" data-link="home.aboutPreview.button.url">
 
-                        <h3>Academic Education</h3>
+                        <span data-bind="home.aboutPreview.button.text">
+                            Discover Our Academy
+                        </span>
 
-                        <p>
-                            Structured learning programs focused on
-                            subject knowledge, understanding and
-                            academic progress.
-                        </p>
+                        <i class="fa-solid fa-arrow-right"></i>
 
-                    </article>
-
-                    <!-- ================= DUMMY SERVICE 02 ================= -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fa-solid fa-chalkboard-user"></i>
-                        </div>
-
-                        <h3>Classroom Learning</h3>
-
-                        <p>
-                            Interactive teaching and classroom
-                            activities designed to support
-                            effective learning.
-                        </p>
-
-                    </article>
-
-                    <!-- ================= DUMMY SERVICE 03 ================= -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-
-                        <h3>Student Guidance</h3>
-
-                        <p>
-                            Educational guidance and learning
-                            support to help students work
-                            towards their goals.
-                        </p>
-
-                    </article>
-
-                    <!-- ================= DUMMY SERVICE 04 ================= -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fa-solid fa-lightbulb"></i>
-                        </div>
-
-                        <h3>Skill Development</h3>
-
-                        <p>
-                            Learning activities that encourage
-                            creativity, practical knowledge
-                            and problem-solving.
-                        </p>
-
-                    </article>
-
-                    <!-- ================= DUMMY SERVICE 05 ================= -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fa-solid fa-clipboard-check"></i>
-                        </div>
-
-                        <h3>Learning Assessment</h3>
-
-                        <p>
-                            Assessments and feedback to help
-                            students understand their progress
-                            and improvement areas.
-                        </p>
-
-                    </article>
-
-                    <!-- ================= DUMMY SERVICE 06 ================= -->
-
-                    <article class="service-card">
-
-                        <div class="service-icon">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-
-                        <h3>Student Activities</h3>
-
-                        <p>
-                            Educational and collaborative activities
-                            that encourage participation and teamwork.
-                        </p>
-
-                    </article>
-
-                    <!-- ================= JSON SERVICE TEMPLATE ================= -->
-
-                    <template data-item-template>
-
-                        <article class="service-card">
-
-                            <div class="service-icon">
-
-                                <i class="fa-solid fa-book-open" data-item-icon="icon">
-                                </i>
-
-                            </div>
-
-                            <h3 data-item-text="title">
-                                Service Title
-                            </h3>
-
-                            <p data-item-text="description">
-                                Service description.
-                            </p>
-
-                        </article>
-
-                    </template>
+                    </a>
 
                 </div>
 
@@ -489,153 +375,79 @@
 
         </section>
 
-        <!-- ================= FACILITIES ================= -->
+        <!-- =================================================
+             SECTION 03 — LEARNING PROGRAMS
+        ================================================== -->
 
-        <section class="section facilities-section" data-enabled="services.facilities.enabled">
-
-            <div class="container facilities-grid">
-
-                <!-- ================= FACILITIES IMAGE ================= -->
-
-                <div class="facilities-image">
-
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85"
-                        alt="Students collaborating in a learning environment" data-image="services.facilities.image"
-                        loading="lazy">
-
-                </div>
-
-                <!-- ================= FACILITIES CONTENT ================= -->
-
-                <div class="facilities-content">
-
-                    <h2 data-bind="services.facilities.title">
-                        Supporting Better Learning Experiences
-                    </h2>
-
-                    <p data-bind="services.facilities.description">
-                        Our approach focuses on creating a supportive
-                        environment where students can learn,
-                        participate and develop confidence.
-                    </p>
-
-                    <!-- ================= FACILITY LIST ================= -->
-
-                    <ul class="facility-list" data-repeat="services.facilities.items">
-
-                        <!-- ================= DUMMY ITEMS ================= -->
-
-                        <li>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Structured educational programs</span>
-                        </li>
-
-                        <li>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Student-focused learning approach</span>
-                        </li>
-
-                        <li>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Academic guidance and support</span>
-                        </li>
-
-                        <li>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>Opportunities for skill development</span>
-                        </li>
-
-                        <!-- ================= JSON ITEM TEMPLATE ================= -->
-
-                        <template data-item-template>
-
-                            <li>
-
-                                <i class="fa-solid fa-circle-check"></i>
-
-                                <span data-item-text="value">
-                                    Facility Item
-                                </span>
-
-                            </li>
-
-                        </template>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- ================= LEARNING PROCESS ================= -->
-
-        <section class="section" data-enabled="services.learningProcess.enabled">
+        <section class="section home-programs" id="learning-programs" data-enabled="home.programs.enabled">
 
             <div class="container">
 
+                <!-- ================= SECTION HEADER ================= -->
+
                 <div class="section-header">
 
-                    <h2 data-bind="services.learningProcess.title">
-                        Our Learning Approach
+                    <h2 data-bind="home.programs.title">
+                        Explore Our Learning Programs
                     </h2>
 
-                    <p data-bind="services.learningProcess.description">
-                        A simple approach focused on understanding,
-                        practice and improvement.
+                    <p data-bind="home.programs.description">
+                        Discover a range of educational programs
+                        designed to support learning and student development.
                     </p>
 
                 </div>
 
-                <div class="program-grid" data-repeat="services.learningProcess.steps">
+                <!-- ================= PROGRAMS GRID ================= -->
 
-                    <!-- ================= DUMMY STEP 01 ================= -->
+                <div class="program-grid" data-repeat="home.programs.items">
+
+                    <!-- ================= PROGRAM 01 ================= -->
 
                     <article class="program-card">
 
                         <span class="program-number">01</span>
 
-                        <h3>Learn</h3>
+                        <h3>Academic Excellence</h3>
 
                         <p>
-                            Build understanding through
-                            educational guidance.
+                            Structured academic learning designed
+                            to build knowledge and understanding.
                         </p>
 
                     </article>
 
-                    <!-- ================= DUMMY STEP 02 ================= -->
+                    <!-- ================= PROGRAM 02 ================= -->
 
                     <article class="program-card">
 
                         <span class="program-number">02</span>
 
-                        <h3>Practice</h3>
+                        <h3>Creative Skills</h3>
 
                         <p>
-                            Strengthen knowledge through
-                            exercises and activities.
+                            Activities that encourage imagination,
+                            practical thinking and problem-solving.
                         </p>
 
                     </article>
 
-                    <!-- ================= DUMMY STEP 03 ================= -->
+                    <!-- ================= PROGRAM 03 ================= -->
 
                     <article class="program-card">
 
                         <span class="program-number">03</span>
 
-                        <h3>Improve</h3>
+                        <h3>Student Activities</h3>
 
                         <p>
-                            Understand progress through feedback
-                            and continuous learning.
+                            Collaborative learning experiences that
+                            promote teamwork and participation.
                         </p>
 
                     </article>
 
-                    <!-- ================= JSON STEP TEMPLATE ================= -->
+                    <!-- ================= JSON PROGRAM TEMPLATE ================= -->
 
                     <template data-item-template>
 
@@ -646,11 +458,132 @@
                             </span>
 
                             <h3 data-item-text="title">
-                                Learning Step
+                                Program Title
                             </h3>
 
                             <p data-item-text="description">
-                                Learning step description.
+                                Program description.
+                            </p>
+
+                        </article>
+
+                    </template>
+
+                </div>
+
+                <!-- ================= ALL PROGRAMS BUTTON ================= -->
+
+                <div style="text-align:center; margin-top:40px;">
+
+                    <a href="pages/services/" class="btn btn-purple">
+
+                        View All Programs
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             SECTION 04 — OUR TEAM
+        ================================================== -->
+
+
+        
+
+        <section class="section team-section home-team" id="our-team" data-enabled="team.enabled">
+
+            <div class="container">
+
+                <!-- ================= SECTION HEADER ================= -->
+
+                <div class="section-header">
+
+                    <h2 data-bind="team.title">
+                        Meet Our Demo Team
+                    </h2>
+
+                    <p data-bind="team.description">
+                        Meet the people who contribute to teaching,
+                        educational guidance and student development.
+                    </p>
+
+                </div>
+
+                <!-- ================= TEAM GRID ================= -->
+
+                <div class="team-grid" data-repeat="team.members">
+
+                    <!-- ================= MEMBER 01 ================= -->
+
+                    <article class="team-card">
+
+                        <img src="https://i.pravatar.cc/300?img=12" alt="Demo principal profile" loading="lazy">
+
+                        <h3>Aarav Sharma</h3>
+
+                        <p>Principal / Director</p>
+
+                    </article>
+
+                    <!-- ================= MEMBER 02 ================= -->
+
+                    <article class="team-card">
+
+                        <img src="https://i.pravatar.cc/300?img=47" alt="Demo academic coordinator profile"
+                            loading="lazy">
+
+                        <h3>Priya Verma</h3>
+
+                        <p>Academic Coordinator</p>
+
+                    </article>
+
+                    <!-- ================= MEMBER 03 ================= -->
+
+                    <article class="team-card">
+
+                        <img src="https://i.pravatar.cc/300?img=13" alt="Demo teacher profile" loading="lazy">
+
+                        <h3>Rohan Mehta</h3>
+
+                        <p>Teacher</p>
+
+                    </article>
+
+                    <!-- ================= MEMBER 04 ================= -->
+
+                    <article class="team-card">
+
+                        <img src="https://i.pravatar.cc/300?img=44" alt="Demo student support coordinator profile"
+                            loading="lazy">
+
+                        <h3>Ananya Singh</h3>
+
+                        <p>Student Support Coordinator</p>
+
+                    </article>
+
+                    <!-- ================= JSON TEAM TEMPLATE ================= -->
+
+                    <template data-item-template>
+
+                        <article class="team-card">
+
+                            <img src="https://i.pravatar.cc/300?img=12" alt="Team member profile"
+                                data-item-image="photo" loading="lazy">
+
+                            <h3 data-item-text="name">
+                                Team Member
+                            </h3>
+
+                            <p data-item-text="role">
+                                Team Role
                             </p>
 
                         </article>
@@ -663,26 +596,27 @@
 
         </section>
 
-        <!-- ================= CONTACT CTA ================= -->
+        <!-- =================================================
+             SECTION 05 — CONTACT CTA
+        ================================================== -->
 
-        <section class="cta-section" data-enabled="cta.services.enabled">
+        <section class="cta-section" id="contact-cta" data-enabled="cta.home.enabled">
 
             <div class="container">
 
-                <h2 data-bind="cta.services.title">
-                    Explore Learning Opportunities
+                <h2 data-bind="cta.home.title">
+                    Discover a Brighter Learning Future
                 </h2>
 
-                <p data-bind="cta.services.description">
-                    Interested in learning more about our programs
-                    and educational services? Contact our
-                    institution for details.
+                <p data-bind="cta.home.description">
+                    Explore the educational programs and opportunities
+                    featured in our demo academy.
                 </p>
 
-                <a href="pages/contact/" class="btn btn-purple" data-link="cta.services.buttonUrl">
+                <a href="pages/services/" class="btn btn-purple" data-link="cta.home.buttonUrl">
 
-                    <span data-bind="cta.services.buttonText">
-                        Contact Us
+                    <span data-bind="cta.home.buttonText">
+                        Explore Programs
                     </span>
 
                     <i class="fa-solid fa-arrow-right"></i>
@@ -695,7 +629,13 @@
 
     </main>
 
-    <!-- ================= FOOTER ================= -->
+
+
+    
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer class="footer" data-enabled="footer.enabled">
 
@@ -704,7 +644,7 @@
         <svg class="footer-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
 
             <path
-                d="M0,0 H1440 V50 C1380,10 1320,10 1260,50 S1140,90 1080,50 S960,10 900,50 S780,90 720,50 S600,10 540,50 S420,90 360,50 S240,10 180,50 S60,90 0,50 Z">
+                d="M0,0 H1440 V50 C1380,10 1320,10 1260,50 S1140,90 1080,50 S960,10 900,50 S840,90 720,50 S600,10 540,50 S420,90 360,50 S240,10 180,50 S60,90 0,50 Z">
             </path>
 
         </svg>
@@ -718,12 +658,13 @@
                 <div>
 
                     <h3 data-bind="website.name">
-                        Institution Name
+                        Bright Future Academy
                     </h3>
 
                     <p data-bind="footer.aboutText">
-                        Supporting students through quality education,
-                        meaningful learning and opportunities for growth.
+                        Bright Future Academy is a fictional
+                        educational institution used to demonstrate
+                        a modern school website.
                     </p>
 
                 </div>
@@ -741,15 +682,15 @@
                         </li>
 
                         <li>
-                            <a href="pages/services/">Services</a>
+                            <a href="/pages/services/">Services</a>
                         </li>
 
                         <li>
-                            <a href="pages/about/">About Us</a>
+                            <a href="/pages/about/">About Us</a>
                         </li>
 
                         <li>
-                            <a href="pages/contact/">Contact</a>
+                            <a href="/pages/contact/">Contact</a>
                         </li>
 
                     </ul>
@@ -766,15 +707,18 @@
                         <i class="fa-solid fa-location-dot"></i>
 
                         <span data-contact-address>
-                            Institution Address
+                            Demo Campus, Education Road,
+                            Demo City, Demo State, India
                         </span>
+                        <!-- ================= SOCIAL MEDIA ================= -->
+
                     </p>
 
                     <p>
                         <i class="fa-solid fa-envelope"></i>
 
                         <span data-contact-email>
-                            Add official email
+                            contact@example.com
                         </span>
                     </p>
 
@@ -782,7 +726,7 @@
                         <i class="fa-solid fa-phone"></i>
 
                         <span data-contact-phone>
-                            Add contact number
+                            +91 00000 00000
                         </span>
                     </p>
 
@@ -795,14 +739,14 @@
             <div class="footer-bottom">
 
                 <p>
-                    © <span id="year"></span>
+                    © <span id="year">2026</span>
 
                     <span data-bind="website.name">
-                        Institution Name
+                        Bright Future Academy
                     </span>.
 
                     <span data-bind="footer.copyrightText">
-                        All Rights Reserved.
+                        Demo Website. All Rights Reserved.
                     </span>
                 </p>
 

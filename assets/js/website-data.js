@@ -1566,3 +1566,172 @@
     }
 
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FOOTER SOCIAL MEDIA — JSON LOADER
+===================================================== */
+
+(function () {
+    "use strict";
+
+    const SOCIAL_CONFIG = {
+        facebook: {
+            icon: "fa-brands fa-facebook-f",
+            label: "Facebook"
+        },
+        instagram: {
+            icon: "fa-brands fa-instagram",
+            label: "Instagram"
+        },
+        youtube: {
+            icon: "fa-brands fa-youtube",
+            label: "YouTube"
+        },
+        linkedin: {
+            icon: "fa-brands fa-linkedin-in",
+            label: "LinkedIn"
+        },
+        twitter: {
+            icon: "fa-brands fa-x-twitter",
+            label: "Twitter / X"
+        },
+        whatsapp: {
+            icon: "fa-brands fa-whatsapp",
+            label: "WhatsApp"
+        },
+        telegram: {
+            icon: "fa-brands fa-telegram",
+            label: "Telegram"
+        }
+    };
+
+    async function loadFooterSocialMedia() {
+
+        const container = document.getElementById("footerSocialLinks");
+
+        if (!container) return;
+
+        try {
+
+            // Works from home and nested pages.
+            const loader = document.querySelector(
+                'script[src*="website-data.js"]'
+            );
+
+            const scriptURL = loader
+                ? new URL(loader.src, document.baseURI)
+                : new URL("/assets/js/website-data.js", document.baseURI);
+
+            const jsonURL = new URL(
+                "/assets/data/website.json",
+                scriptURL
+            );
+
+            const response = await fetch(jsonURL);
+
+            if (!response.ok) {
+                throw new Error("Unable to load website JSON");
+            }
+
+            const data = await response.json();
+
+            const socialMedia = data.socialMedia || {};
+
+            // Optional footer setting.
+            if (data.footer?.showSocialLinks === false) {
+                container.closest(".footer-social-section")?.remove();
+                return;
+            }
+
+            container.replaceChildren();
+
+            Object.entries(SOCIAL_CONFIG).forEach(([platform, config]) => {
+
+                const url = socialMedia[platform];
+
+                if (typeof url !== "string" || !url.trim()) {
+                    return;
+                }
+
+                let parsedURL;
+
+                try {
+                    parsedURL = new URL(url.trim());
+                } catch {
+                    return;
+                }
+
+                if (!["https:", "http:"].includes(parsedURL.protocol)) {
+                    return;
+                }
+
+                const link = document.createElement("a");
+
+                link.href = parsedURL.href;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.title = config.label;
+                link.setAttribute(
+                    "aria-label",
+                    `Visit our ${config.label} page`
+                );
+
+                const icon = document.createElement("i");
+
+                icon.className = config.icon;
+                icon.setAttribute("aria-hidden", "true");
+
+                link.appendChild(icon);
+                container.appendChild(link);
+
+            });
+
+            if (!container.children.length) {
+                container.closest(".footer-social-section")?.remove();
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Footer social media loading failed:",
+                error
+            );
+
+        }
+
+    }
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadFooterSocialMedia,
+            { once: true }
+        );
+
+    } else {
+
+        loadFooterSocialMedia();
+
+    }
+
+})();

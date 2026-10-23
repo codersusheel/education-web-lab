@@ -1,636 +1,636 @@
-
 {
-  "website": {
-    "name": "Bright Future Academy",
-    "shortName": "Bright Future",
-    "tagline": "Learn Today, Lead Tomorrow",
-    "type": "school",
-    "status": "active",
-    "language": "en",
-    "websiteUrl": "",
-    "logo": {
-      "type": "icon",
-      "icon": "fa-solid fa-graduation-cap",
-      "image": "",
-      "alt": "Bright Future Academy Logo"
+    "website": {
+        "name": "Bright Future Academy",
+        "shortName": "Bright Future",
+        "tagline": "Learn Today, Lead Tomorrow",
+        "type": "school",
+        "status": "active",
+        "language": "en",
+        "websiteUrl": "",
+        "logo": {
+            "type": "icon",
+            "icon": "fa-solid fa-graduation-cap",
+            "image": "",
+            "alt": "Bright Future Academy Logo"
+        },
+        "favicon": "",
+        "theme": {
+            "primary": "#5969c7",
+            "primaryDark": "#4758b2",
+            "secondary": "#f3c747",
+            "text": "#24313c",
+            "muted": "#64748b",
+            "background": "#ffffff",
+            "surface": "#f8fafc",
+            "border": "#e5e7eb"
+        }
     },
-    "favicon": "",
-    "theme": {
-      "primary": "#5969c7",
-      "primaryDark": "#4758b2",
-      "secondary": "#f3c747",
-      "text": "#24313c",
-      "muted": "#64748b",
-      "background": "#ffffff",
-      "surface": "#f8fafc",
-      "border": "#e5e7eb"
-    }
-  },
-  "seo": {
-    "siteName": "Bright Future Academy",
-    "defaultTitle": "Bright Future Academy | Quality Education & Learning",
-    "defaultDescription": "Discover quality education, academic programs and student development opportunities at Bright Future Academy.",
-    "robots": "index, follow",
-    "googlebot": "index, follow, max-image-preview:large",
-    "bingbot": "index, follow",
-    "author": "Bright Future Academy",
-    "publisher": "Bright Future Academy",
-    "ogType": "website",
-    "ogLocale": "en_IN",
-    "ogImage": "",
-    "twitterCard": "summary_large_image",
-    "twitterSite": "",
-    "twitterCreator": "",
-    "pages": {
-      "home": {
-        "title": "Bright Future Academy | Learn Today, Lead Tomorrow",
-        "description": "Welcome to Bright Future Academy. Explore academic learning, student development and educational opportunities.",
-        "keywords": "Bright Future Academy, school, education, learning, students",
-        "path": "/",
+    "seo": {
+        "siteName": "Bright Future Academy",
+        "defaultTitle": "Bright Future Academy | Quality Education & Learning",
+        "defaultDescription": "Discover quality education, academic programs and student development opportunities at Bright Future Academy.",
         "robots": "index, follow",
-        "ogTitle": "Bright Future Academy | Quality Education",
-        "ogDescription": "Supporting students through education, creativity and growth.",
+        "googlebot": "index, follow, max-image-preview:large",
+        "bingbot": "index, follow",
+        "author": "Bright Future Academy",
+        "publisher": "Bright Future Academy",
+        "ogType": "website",
+        "ogLocale": "en_IN",
         "ogImage": "",
-        "ogImageAlt": "Bright Future Academy",
-        "twitterTitle": "Bright Future Academy",
-        "twitterDescription": "Learn Today, Lead Tomorrow.",
-        "twitterImage": "",
-        "schemaType": "School"
-      },
-      "services": {
-        "title": "Our Services & Programs | Bright Future Academy",
-        "description": "Explore classroom learning, academic education, student guidance and skill development programs at Bright Future Academy.",
-        "keywords": "Bright Future Academy services, learning programs, education, academic support",
-        "path": "/page/services/",
-        "robots": "index, follow",
-        "ogTitle": "Learning Programs | Bright Future Academy",
-        "ogDescription": "Discover our educational services and learning opportunities.",
-        "ogImage": "",
-        "ogImageAlt": "Bright Future Academy learning programs",
-        "twitterTitle": "Services | Bright Future Academy",
-        "twitterDescription": "Explore our learning programs.",
-        "twitterImage": "",
-        "schemaType": "CollectionPage"
-      },
-      "about": {
-        "title": "About Us | Bright Future Academy",
-        "description": "Learn about Bright Future Academy, our mission, vision, educational values and learning approach.",
-        "keywords": "about Bright Future Academy, mission, vision, school",
-        "path": "/pages/about/",
-        "robots": "index, follow",
-        "ogTitle": "About Bright Future Academy",
-        "ogDescription": "Discover our mission, vision and commitment to student development.",
-        "ogImage": "",
-        "ogImageAlt": "About Bright Future Academy",
-        "twitterTitle": "About Us | Bright Future Academy",
-        "twitterDescription": "Learn more about our academy.",
-        "twitterImage": "",
-        "schemaType": "AboutPage"
-      },
-      "contact": {
-        "title": "Contact Us | Bright Future Academy",
-        "description": "Contact Bright Future Academy for admissions, educational programs and general enquiries.",
-        "keywords": "Bright Future Academy contact, admissions, enquiry",
-        "path": "/pages/contact/",
-        "robots": "index, follow",
-        "ogTitle": "Contact Bright Future Academy",
-        "ogDescription": "Get in touch with Bright Future Academy.",
-        "ogImage": "",
-        "ogImageAlt": "Contact Bright Future Academy",
-        "twitterTitle": "Contact | Bright Future Academy",
-        "twitterDescription": "Reach our academy for information and enquiries.",
-        "twitterImage": "",
-        "schemaType": "ContactPage"
-      }
-    }
-  },
-  "navigation": {
-    "items": [
-      {
-        "name": "Home",
-        "url": "/",
-        "page": "home",
-        "visible": true
-      },
-      {
-        "name": "Services",
-        "url": "/pages/services/",
-        "page": "services",
-        "visible": true
-      },
-      {
-        "name": "About",
-        "url": "/pages/about/",
-        "page": "about",
-        "visible": true
-      },
-      {
-        "name": "Contact",
-        "url": "/pages/contact/",
-        "page": "contact",
-        "visible": true
-      }
-    ]
-  },
-  "contact": {
-    "email": "contact1@example.com",
-    "phone": "+919127000000",
-    "displayPhone": "+91 9127000000",
-    "alternatePhone": "9127000000",
-    "whatsapp": "9127000000",
-    "address": {
-      "line1": "Demo Campus, Education Road",
-      "line2": "Academic Zone",
-      "city": "Demo City",
-      "district": "",
-      "state": "Demo State",
-      "postalCode": "",
-      "country": "India",
-      "fullAddress": "Demo Campus, Education Road, Demo City, Demo State, India"
-    },
-    "googleMaps": {
-      "placeUrl": "",
-      "embedUrl": "",
-      "latitude": null,
-      "longitude": null
-    },
-    "officeHours": [
-      {
-        "day": "Monday - Friday",
-        "time": "9:00 AM - 4:00 PM"
-      },
-      {
-        "day": "Saturday",
-        "time": "9:00 AM - 1:00 PM"
-      },
-      {
-        "day": "Sunday",
-        "time": "Closed"
-      },
-      {
-        "day": "Public Holidays",
-        "time": "Closed"
-      }
-    ]
-  },
-  "socialMedia": {
-    "facebook": "",
-    "instagram": "",
-    "youtube": "",
-    "linkedin": "",
-    "twitter": "",
-    "whatsapp": "",
-    "telegram": ""
-  },
-  "home": {
-    "hero": {
-      "eyebrow": "Welcome to Bright Future Academy",
-      "title": "Learn Today, Lead Tomorrow.",
-      "description": "At Bright Future Academy, we inspire young minds through meaningful education, creativity, practical learning and opportunities for personal growth.",
-      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85",
-      "imageAlt": "Students learning together in a classroom - Demo",
-      "button": {
-        "text": "Explore Our Programs",
-        "url": "/services/",
-        "visible": true
-      }
-    },
-    "features": {
-      "enabled": true,
-      "title": "Why Choose Bright Future Academy?",
-      "description": "Helping students build strong academic foundations, confidence and practical skills.",
-      "items": [
-        {
-          "id": "feature-01",
-          "icon": "fa-solid fa-book-open",
-          "title": "Quality Learning",
-          "description": "Engaging lessons designed to strengthen academic understanding and encourage curiosity."
-        },
-        {
-          "id": "feature-02",
-          "icon": "fa-solid fa-chalkboard-user",
-          "title": "Dedicated Learning Support",
-          "description": "Guidance and educational support to help every learner develop confidence."
-        },
-        {
-          "id": "feature-03",
-          "icon": "fa-solid fa-users",
-          "title": "Holistic Development",
-          "description": "Encouraging creativity, collaboration, communication and personal growth."
+        "twitterCard": "summary_large_image",
+        "twitterSite": "",
+        "twitterCreator": "",
+        "pages": {
+            "home": {
+                "title": "Bright Future Academy | Learn Today, Lead Tomorrow",
+                "description": "Welcome to Bright Future Academy. Explore academic learning, student development and educational opportunities.",
+                "keywords": "Bright Future Academy, school, education, learning, students",
+                "path": "/",
+                "robots": "index, follow",
+                "ogTitle": "Bright Future Academy | Quality Education",
+                "ogDescription": "Supporting students through education, creativity and growth.",
+                "ogImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+                "ogImageAlt": "Bright Future Academy",
+                "twitterTitle": "Bright Future Academy",
+                "twitterDescription": "Learn Today, Lead Tomorrow.",
+                "twitterImage": "",
+                "schemaType": "School"
+            },
+            "services": {
+                "title": "Our Services & Programs | Bright Future Academy",
+                "description": "Explore classroom learning, academic education, student guidance and skill development programs at Bright Future Academy.",
+                "keywords": "Bright Future Academy services, learning programs, education, academic support",
+                "path": "/page/services/",
+                "robots": "index, follow",
+                "ogTitle": "Learning Programs | Bright Future Academy",
+                "ogDescription": "Discover our educational services and learning opportunities.",
+                "ogImage": "",
+                "ogImageAlt": "Bright Future Academy learning programs",
+                "twitterTitle": "Services | Bright Future Academy",
+                "twitterDescription": "Explore our learning programs.",
+                "twitterImage": "",
+                "schemaType": "CollectionPage"
+            },
+            "about": {
+                "title": "About Us | Bright Future Academy",
+                "description": "Learn about Bright Future Academy, our mission, vision, educational values and learning approach.",
+                "keywords": "about Bright Future Academy, mission, vision, school",
+                "path": "/pages/about/",
+                "robots": "index, follow",
+                "ogTitle": "About Bright Future Academy",
+                "ogDescription": "Discover our mission, vision and commitment to student development.",
+                "ogImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+                "ogImageAlt": "About Bright Future Academy",
+                "twitterTitle": "About Us | Bright Future Academy",
+                "twitterDescription": "Learn more about our academy.",
+                "twitterImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+                "schemaType": "AboutPage"
+            },
+            "contact": {
+                "title": "Contact Us | Bright Future Academy",
+                "description": "Contact Bright Future Academy for admissions, educational programs and general enquiries.",
+                "keywords": "Bright Future Academy contact, admissions, enquiry",
+                "path": "/pages/contact/",
+                "robots": "index, follow",
+                "ogTitle": "Contact Bright Future Academy",
+                "ogDescription": "Get in touch with Bright Future Academy.",
+                "ogImage": "",
+                "ogImageAlt": "Contact Bright Future Academy",
+                "twitterTitle": "Contact | Bright Future Academy",
+                "twitterDescription": "Reach our academy for information and enquiries.",
+                "twitterImage": "",
+                "schemaType": "ContactPage"
+            }
         }
-      ]
     },
-    "aboutPreview": {
-      "enabled": true,
-      "title": "A Place to Learn, Grow and Succeed",
-      "description": "Bright Future Academy is a fictional demonstration institution designed to showcase a modern school website and its educational features.",
-      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=85",
-      "button": {
-        "text": "Discover Our Academy",
-        "url": "/about/"
-      }
-    },
-    "programs": {
-      "enabled": true,
-      "title": "Explore Our Learning Programs",
-      "description": "Discover a range of sample educational programs created for website testing.",
-      "items": [
-        {
-          "id": "program-01",
-          "number": "01",
-          "title": "Academic Excellence",
-          "description": "Structured academic learning designed to build knowledge and understanding."
-        },
-        {
-          "id": "program-02",
-          "number": "02",
-          "title": "Creative Skills",
-          "description": "Activities that encourage imagination, practical thinking and problem-solving."
-        },
-        {
-          "id": "program-03",
-          "number": "03",
-          "title": "Student Activities",
-          "description": "Collaborative learning experiences that promote teamwork and participation."
-        }
-      ]
-    }
-  },
-  "services": {
-    "hero": {
-      "eyebrow": "Education & Learning",
-      "title": "Our Learning Services",
-      "description": "Explore the sample educational programs, academic support and student development services at Bright Future Academy.",
-      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85",
-      "imageAlt": "Students learning in a classroom",
-      "button": {
-        "text": "Explore Programs",
-        "url": "#learning-programs",
-        "visible": true
-      }
-    },
-    "overview": {
-      "enabled": true,
-      "title": "Supporting Every Learning Journey",
-      "description": "Our demo academy highlights educational experiences focused on knowledge, creativity, confidence and student development."
-    },
-    "highlights": [
-      {
-        "id": "highlight-01",
-        "icon": "fa-solid fa-book-open",
-        "title": "Academic Learning",
-        "description": "Strong subject knowledge and understanding."
-      },
-      {
-        "id": "highlight-02",
-        "icon": "fa-solid fa-user-graduate",
-        "title": "Student Support",
-        "description": "Guidance for academic and personal development."
-      },
-      {
-        "id": "highlight-03",
-        "icon": "fa-solid fa-lightbulb",
-        "title": "Skill Development",
-        "description": "Practical thinking, creativity and innovation."
-      },
-      {
-        "id": "highlight-04",
-        "icon": "fa-solid fa-users",
-        "title": "Learning Activities",
-        "description": "Participation, collaboration and teamwork."
-      }
-    ],
-    "programs": {
-      "enabled": true,
-      "title": "Our Educational Programs",
-      "description": "Explore six sample programs used to demonstrate dynamic website content.",
-      "items": [
-        {
-          "id": "service-01",
-          "icon": "fa-solid fa-book-open-reader",
-          "title": "Academic Education",
-          "description": "Structured learning focused on core academic subjects and student progress."
-        },
-        {
-          "id": "service-02",
-          "icon": "fa-solid fa-chalkboard-user",
-          "title": "Interactive Classroom Learning",
-          "description": "Engaging teaching activities designed to encourage participation and understanding."
-        },
-        {
-          "id": "service-03",
-          "icon": "fa-solid fa-user-graduate",
-          "title": "Student Guidance",
-          "description": "Educational support and academic guidance for learners."
-        },
-        {
-          "id": "service-04",
-          "icon": "fa-solid fa-lightbulb",
-          "title": "Creative Skill Development",
-          "description": "Practical activities that encourage creativity and problem-solving."
-        },
-        {
-          "id": "service-05",
-          "icon": "fa-solid fa-clipboard-check",
-          "title": "Learning Assessment",
-          "description": "Sample assessment and feedback activities for tracking educational progress."
-        },
-        {
-          "id": "service-06",
-          "icon": "fa-solid fa-people-group",
-          "title": "Student Activities",
-          "description": "Collaborative educational activities that promote confidence and teamwork."
-        }
-      ]
-    },
-    "facilities": {
-      "enabled": true,
-      "title": "A Supportive Learning Environment",
-      "description": "Explore the sample facilities and educational support features included in this demo website.",
-      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
-      "items": [
-        "Student-focused educational programs",
-        "Interactive classroom learning",
-        "Academic guidance and support",
-        "Opportunities for practical skill development",
-        "Creativity, communication and collaboration"
-      ]
-    },
-    "learningProcess": {
-      "enabled": true,
-      "title": "Our Learning Approach",
-      "description": "A simple three-step approach focused on understanding, practice and continuous improvement.",
-      "steps": [
-        {
-          "number": "01",
-          "title": "Learn",
-          "description": "Build understanding through structured educational guidance."
-        },
-        {
-          "number": "02",
-          "title": "Practice",
-          "description": "Strengthen skills through exercises, projects and learning activities."
-        },
-        {
-          "number": "03",
-          "title": "Improve",
-          "description": "Review progress and develop confidence through feedback and practice."
-        }
-      ]
-    }
-  },
-  "about": {
-    "hero": {
-      "eyebrow": "Discover Our Academy",
-      "title": "About Bright Future Academy",
-      "description": "Explore our fictional academy's educational vision, learning approach and commitment to student development.",
-      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=85",
-      "imageAlt": "Students celebrating educational achievements",
-      "button": {
-        "text": "Learn About Us",
-        "url": "#about-overview",
-        "visible": true
-      }
-    },
-    "overview": {
-      "enabled": true,
-      "title": "Building a Brighter Future Through Learning",
-      "paragraphs": [
-        "Bright Future Academy is a fictional school created for testing and demonstrating an education website template.",
-        "The academy's sample educational approach focuses on curiosity, confidence, academic understanding and practical skills.",
-        "This demonstration highlights how an institution can present its learning programs, mission, vision, team and contact information through one JSON configuration."
-      ],
-      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85"
-    },
-    "mission": {
-      "enabled": true,
-      "icon": "fa-solid fa-bullseye",
-      "title": "Our Mission",
-      "description": "To demonstrate a supportive learning environment that encourages academic growth, practical understanding, confidence and personal development."
-    },
-    "vision": {
-      "enabled": true,
-      "icon": "fa-solid fa-eye",
-      "title": "Our Vision",
-      "description": "To inspire confident learners, responsible individuals and creative thinkers through meaningful educational experiences."
-    },
-    "values": {
-      "enabled": true,
-      "title": "Our Core Values",
-      "items": [
-        {
-          "icon": "fa-solid fa-book-open-reader",
-          "title": "Quality Education",
-          "description": "Encouraging understanding, curiosity and academic development."
-        },
-        {
-          "icon": "fa-solid fa-handshake",
-          "title": "Respect & Responsibility",
-          "description": "Promoting positive relationships, respect and responsible participation."
-        },
-        {
-          "icon": "fa-solid fa-lightbulb",
-          "title": "Creativity & Innovation",
-          "description": "Encouraging new ideas, practical thinking and continuous improvement."
-        }
-      ]
-    },
-    "learningApproach": {
-      "enabled": true,
-      "title": "Our Approach to Learning",
-      "description": "Our demo learning approach combines academic understanding with creativity and practical skills.",
-      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
-      "items": [
-        "Student-focused learning experiences",
-        "Clear academic guidance",
-        "Practical understanding and skill development",
-        "Creativity and collaborative activities",
-        "Continuous learning and improvement"
-      ]
-    }
-  },
-  "team": {
-    "enabled": true,
-    "title": "Meet Our Demo Team",
-    "description": "Sample team profiles created to test the website's dynamic staff directory.",
-    "members": [
-      {
-        "id": "member-01",
-        "name": "Aarav Sharma",
-        "role": "Principal / Director",
-        "photo": "https://i.pravatar.cc/300?img=12",
-        "bio": "Demo principal profile for website testing.",
-        "email": "",
-        "visible": true
-      },
-      {
-        "id": "member-02",
-        "name": "Priya Verma",
-        "role": "Academic Coordinator",
-        "photo": "https://i.pravatar.cc/300?img=47",
-        "bio": "Demo academic coordinator profile.",
-        "email": "",
-        "visible": true
-      },
-      {
-        "id": "member-03",
-        "name": "Rohan Mehta",
-        "role": "Teacher",
-        "photo": "https://i.pravatar.cc/300?img=13",
-        "bio": "Demo teacher profile for educational activities.",
-        "email": "",
-        "visible": true
-      },
-      {
-        "id": "member-04",
-        "name": "Ananya Singh",
-        "role": "Student Support Coordinator",
-        "photo": "https://i.pravatar.cc/300?img=44",
-        "bio": "Demo student support team member.",
-        "email": "",
-        "visible": true
-      }
-    ]
-  },
-  "contactPage": {
-    "hero": {
-      "eyebrow": "Connect With Our Academy",
-      "title": "Contact Bright Future Academy",
-      "description": "Have questions about our sample programs, admissions or learning services? Explore this demonstration contact page.",
-      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85",
-      "imageAlt": "Students studying in a classroom",
-      "button": {
-        "text": "View Contact Information",
-        "url": "#contact-information",
-        "visible": true
-      }
-    },
-    "information": {
-      "title": "Contact Information",
-      "description": "Sample contact information provided for demonstration and website testing."
-    },
-    "form": {
-      "enabled": true,
-      "title": "How Can We Help You?",
-      "description": "Use this demo form to test enquiry fields and validation. No real institution receives these enquiries.",
-      "deliveryMethod": "mailto",
-      "recipientEmail": "contact@example.com",
-      "submitText": "Prepare Email",
-      "fields": {
-        "name": {
-          "label": "Full Name",
-          "required": true
-        },
-        "email": {
-          "label": "Email Address",
-          "required": true
-        },
-        "phone": {
-          "label": "Phone Number",
-          "required": false
-        },
-        "subject": {
-          "label": "Enquiry Type",
-          "required": true,
-          "options": [
-            "Admission Enquiry",
-            "Course Information",
-            "Academic Support",
-            "General Enquiry",
-            "Other"
-          ]
-        },
-        "message": {
-          "label": "Your Message",
-          "required": true,
-          "minLength": 10,
-          "maxLength": 3000
-        }
-      }
-    },
-    "location": {
-      "enabled": true,
-      "title": "Find Our Demo Campus",
-      "description": "This is a fictional campus address for website demonstration purposes.",
-      "mapEnabled": false
-    },
-    "faq": {
-      "enabled": true,
-      "title": "Frequently Asked Questions",
-      "items": [
-        {
-          "question": "Is Bright Future Academy a real school?",
-          "answer": "No. Bright Future Academy is a fictional demonstration institution created for testing an educational website template."
-        },
-        {
-          "question": "How can I enquire about admissions?",
-          "answer": "You can explore the demo enquiry form. Actual admissions are not offered through this demonstration website."
-        },
-        {
-          "question": "Can I visit the academy?",
-          "answer": "No physical campus exists. The displayed location is fictional and used only for testing."
-        },
-        {
-          "question": "Does the enquiry form send my message automatically?",
-          "answer": "No. The form is configured for mailto, which requires an email application and manual sending. The demo recipient is not configured for real enquiries."
-        }
-      ]
-    }
-  },
-  "cta": {
-    "home": {
-      "enabled": true,
-      "title": "Discover a Brighter Learning Future",
-      "description": "Explore the educational programs and opportunities featured in our demo academy.",
-      "buttonText": "Explore Programs",
-      "buttonUrl": "/services/"
-    },
-    "services": {
-      "enabled": true,
-      "title": "Explore More Learning Opportunities",
-      "description": "Discover how Bright Future Academy presents educational services and student development programs.",
-      "buttonText": "Contact Our Academy",
-      "buttonUrl": "/contact/"
-    },
-    "about": {
-      "enabled": true,
-      "title": "Learn More About Bright Future Academy",
-      "description": "Explore our sample educational programs, team and learning approach.",
-      "buttonText": "View Programs",
-      "buttonUrl": "/services/"
+    "navigation": {
+        "items": [
+            {
+                "name": "Home",
+                "url": "/",
+                "page": "home",
+                "visible": true
+            },
+            {
+                "name": "Services",
+                "url": "/pages/services/",
+                "page": "services",
+                "visible": true
+            },
+            {
+                "name": "About",
+                "url": "/pages/about/",
+                "page": "about",
+                "visible": true
+            },
+            {
+                "name": "Contact",
+                "url": "/pages/contact/",
+                "page": "contact",
+                "visible": true
+            }
+        ]
     },
     "contact": {
-      "enabled": true,
-      "title": "Thank You for Exploring Our Demo",
-      "description": "This demonstration shows how schools can manage website content through one JSON file.",
-      "buttonText": "Back to Home",
-      "buttonUrl": "/"
+        "email": "contact1@example.com",
+        "phone": "+919127000000",
+        "displayPhone": "+91 9127000000",
+        "alternatePhone": "9127000000",
+        "whatsapp": "9127000000",
+        "address": {
+            "line1": "Demo Campus, Education Road",
+            "line2": "Academic Zone",
+            "city": "Demo City",
+            "district": "",
+            "state": "Demo State",
+            "postalCode": "",
+            "country": "India",
+            "fullAddress": "Demo Campus, Education Road, Demo City, Demo State, India"
+        },
+        "googleMaps": {
+            "placeUrl": "",
+            "embedUrl": "",
+            "latitude": null,
+            "longitude": null
+        },
+        "officeHours": [
+            {
+                "day": "Monday - Friday",
+                "time": "9:00 AM - 4:00 PM"
+            },
+            {
+                "day": "Saturday",
+                "time": "9:00 AM - 1:00 PM"
+            },
+            {
+                "day": "Sunday",
+                "time": "Closed"
+            },
+            {
+                "day": "Public Holidays",
+                "time": "Closed"
+            }
+        ]
+    },
+    "socialMedia": {
+        "facebook": "https://www.facebook.com/",
+        "instagram": "https://www.instagram.com/",
+        "youtube": "https://www.youtube.com/",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://www.twitter.com/",
+        "whatsapp": "https://www.whatsapp.com/",
+        "telegram": "https://www.telegram.com/"
+    },
+ 
+    "home": {
+        "hero": {
+            "eyebrow": "Welcome to Bright Future Academy",
+            "title": "Learn Today, Lead Tomorrow.",
+            "description": "At Bright Future Academy, we inspire young minds through meaningful education, creativity, practical learning and opportunities for personal growth.",
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+            "imageAlt": "Students learning together in a classroom - Demo",
+            "button": {
+                "text": "Explore Our Programs",
+                "url": "/pages/services/",
+                "visible": true
+            }
+        },
+        "features": {
+            "enabled": true,
+            "title": "Why Choose Bright Future Academy?",
+            "description": "Helping students build strong academic foundations, confidence and practical skills.",
+            "items": [
+                {
+                    "id": "feature-01",
+                    "icon": "fa-solid fa-book-open",
+                    "title": "Quality Learning",
+                    "description": "Engaging lessons designed to strengthen academic understanding and encourage curiosity."
+                },
+                {
+                    "id": "feature-02",
+                    "icon": "fa-solid fa-chalkboard-user",
+                    "title": "Dedicated Learning Support",
+                    "description": "Guidance and educational support to help every learner develop confidence."
+                },
+                {
+                    "id": "feature-03",
+                    "icon": "fa-solid fa-users",
+                    "title": "Holistic Development",
+                    "description": "Encouraging creativity, collaboration, communication and personal growth."
+                }
+            ]
+        },
+        "aboutPreview": {
+            "enabled": true,
+            "title": "A Place to Learn, Grow and Succeed",
+            "description": "Bright Future Academy is a fictional demonstration institution designed to showcase a modern school website and its educational features.",
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+            "button": {
+                "text": "Discover Our Academy",
+                "url": "/about/"
+            }
+        },
+        "programs": {
+            "enabled": true,
+            "title": "Explore Our Learning Programs",
+            "description": "Discover a range of sample educational programs created for website testing.",
+            "items": [
+                {
+                    "id": "program-01",
+                    "number": "01",
+                    "title": "Academic Excellence",
+                    "description": "Structured academic learning designed to build knowledge and understanding."
+                },
+                {
+                    "id": "program-02",
+                    "number": "02",
+                    "title": "Creative Skills",
+                    "description": "Activities that encourage imagination, practical thinking and problem-solving."
+                },
+                {
+                    "id": "program-03",
+                    "number": "03",
+                    "title": "Student Activities",
+                    "description": "Collaborative learning experiences that promote teamwork and participation."
+                }
+            ]
+        }
+    },
+    "services": {
+        "hero": {
+            "eyebrow": "Education & Learning",
+            "title": "Our Learning Services",
+            "description": "Explore the sample educational programs, academic support and student development services at Bright Future Academy.",
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+            "imageAlt": "Students learning in a classroom",
+            "button": {
+                "text": "Explore Programs",
+                "url": "#learning-programs",
+                "visible": true
+            }
+        },
+        "overview": {
+            "enabled": true,
+            "title": "Supporting Every Learning Journey",
+            "description": "Our demo academy highlights educational experiences focused on knowledge, creativity, confidence and student development."
+        },
+        "highlights": [
+            {
+                "id": "highlight-01",
+                "icon": "fa-solid fa-book-open",
+                "title": "Academic Learning",
+                "description": "Strong subject knowledge and understanding."
+            },
+            {
+                "id": "highlight-02",
+                "icon": "fa-solid fa-user-graduate",
+                "title": "Student Support",
+                "description": "Guidance for academic and personal development."
+            },
+            {
+                "id": "highlight-03",
+                "icon": "fa-solid fa-lightbulb",
+                "title": "Skill Development",
+                "description": "Practical thinking, creativity and innovation."
+            },
+            {
+                "id": "highlight-04",
+                "icon": "fa-solid fa-users",
+                "title": "Learning Activities",
+                "description": "Participation, collaboration and teamwork."
+            }
+        ],
+        "programs": {
+            "enabled": true,
+            "title": "Our Educational Programs",
+            "description": "Explore six sample programs used to demonstrate dynamic website content.",
+            "items": [
+                {
+                    "id": "service-01",
+                    "icon": "fa-solid fa-book-open-reader",
+                    "title": "Academic Education",
+                    "description": "Structured learning focused on core academic subjects and student progress."
+                },
+                {
+                    "id": "service-02",
+                    "icon": "fa-solid fa-chalkboard-user",
+                    "title": "Interactive Classroom Learning",
+                    "description": "Engaging teaching activities designed to encourage participation and understanding."
+                },
+                {
+                    "id": "service-03",
+                    "icon": "fa-solid fa-user-graduate",
+                    "title": "Student Guidance",
+                    "description": "Educational support and academic guidance for learners."
+                },
+                {
+                    "id": "service-04",
+                    "icon": "fa-solid fa-lightbulb",
+                    "title": "Creative Skill Development",
+                    "description": "Practical activities that encourage creativity and problem-solving."
+                },
+                {
+                    "id": "service-05",
+                    "icon": "fa-solid fa-clipboard-check",
+                    "title": "Learning Assessment",
+                    "description": "Sample assessment and feedback activities for tracking educational progress."
+                },
+                {
+                    "id": "service-06",
+                    "icon": "fa-solid fa-people-group",
+                    "title": "Student Activities",
+                    "description": "Collaborative educational activities that promote confidence and teamwork."
+                }
+            ]
+        },
+        "facilities": {
+            "enabled": true,
+            "title": "A Supportive Learning Environment",
+            "description": "Explore the sample facilities and educational support features included in this demo website.",
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+            "items": [
+                "Student-focused educational programs",
+                "Interactive classroom learning",
+                "Academic guidance and support",
+                "Opportunities for practical skill development",
+                "Creativity, communication and collaboration"
+            ]
+        },
+        "learningProcess": {
+            "enabled": true,
+            "title": "Our Learning Approach",
+            "description": "A simple three-step approach focused on understanding, practice and continuous improvement.",
+            "steps": [
+                {
+                    "number": "01",
+                    "title": "Learn",
+                    "description": "Build understanding through structured educational guidance."
+                },
+                {
+                    "number": "02",
+                    "title": "Practice",
+                    "description": "Strengthen skills through exercises, projects and learning activities."
+                },
+                {
+                    "number": "03",
+                    "title": "Improve",
+                    "description": "Review progress and develop confidence through feedback and practice."
+                }
+            ]
+        }
+    },
+    "about": {
+        "hero": {
+            "eyebrow": "Discover Our Academy",
+            "title": "About Bright Future Academy",
+            "description": "Explore our fictional academy's educational vision, learning approach and commitment to student development.",
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+            "imageAlt": "Students celebrating educational achievements",
+            "button": {
+                "text": "Learn About Us",
+                "url": "#about-overview",
+                "visible": true
+            }
+        },
+        "overview": {
+            "enabled": true,
+            "title": "Building a Brighter Future Through Learning",
+            "paragraphs": [
+                "Bright Future Academy is a fictional school created for testing and demonstrating an education website template.",
+                "The academy's sample educational approach focuses on curiosity, confidence, academic understanding and practical skills.",
+                "This demonstration highlights how an institution can present its learning programs, mission, vision, team and contact information through one JSON configuration."
+            ],
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85"
+        },
+        "mission": {
+            "enabled": true,
+            "icon": "fa-solid fa-bullseye",
+            "title": "Our Mission",
+            "description": "To demonstrate a supportive learning environment that encourages academic growth, practical understanding, confidence and personal development."
+        },
+        "vision": {
+            "enabled": true,
+            "icon": "fa-solid fa-eye",
+            "title": "Our Vision",
+            "description": "To inspire confident learners, responsible individuals and creative thinkers through meaningful educational experiences."
+        },
+        "values": {
+            "enabled": true,
+            "title": "Our Core Values",
+            "items": [
+                {
+                    "icon": "fa-solid fa-book-open-reader",
+                    "title": "Quality Education",
+                    "description": "Encouraging understanding, curiosity and academic development."
+                },
+                {
+                    "icon": "fa-solid fa-handshake",
+                    "title": "Respect & Responsibility",
+                    "description": "Promoting positive relationships, respect and responsible participation."
+                },
+                {
+                    "icon": "fa-solid fa-lightbulb",
+                    "title": "Creativity & Innovation",
+                    "description": "Encouraging new ideas, practical thinking and continuous improvement."
+                }
+            ]
+        },
+        "learningApproach": {
+            "enabled": true,
+            "title": "Our Approach to Learning",
+            "description": "Our demo learning approach combines academic understanding with creativity and practical skills.",
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+            "items": [
+                "Student-focused learning experiences",
+                "Clear academic guidance",
+                "Practical understanding and skill development",
+                "Creativity and collaborative activities",
+                "Continuous learning and improvement"
+            ]
+        }
+    },
+    "team": {
+        "enabled": true,
+        "title": "Meet Our Demo Team",
+        "description": "Sample team profiles created to test the website's dynamic staff directory.",
+        "members": [
+            {
+                "id": "member-01",
+                "name": "Aarav Sharma",
+                "role": "Principal / Director",
+                "photo": "https://i.pravatar.cc/300?img=12",
+                "bio": "Demo principal profile for website testing.",
+                "email": "",
+                "visible": true
+            },
+            {
+                "id": "member-02",
+                "name": "Priya Verma",
+                "role": "Academic Coordinator",
+                "photo": "https://i.pravatar.cc/300?img=47",
+                "bio": "Demo academic coordinator profile.",
+                "email": "",
+                "visible": true
+            },
+            {
+                "id": "member-03",
+                "name": "Rohan Meht",
+                "role": "Teacher",
+                "photo": "https://i.pravatar.cc/300?img=13",
+                "bio": "Demo teacher profile for educational activities.",
+                "email": "",
+                "visible": true
+            },
+            {
+                "id": "member-04",
+                "name": "Ananya Singh",
+                "role": "Student Support Coordinator",
+                "photo": "https://i.pravatar.cc/300?img=44",
+                "bio": "Demo student support team member.",
+                "email": "",
+                "visible": true
+            }
+        ]
+    },
+    "contactPage": {
+        "hero": {
+            "eyebrow": "Connect With Our Academy",
+            "title": "Contact Bright Future Academy",
+            "description": "Have questions about our sample programs, admissions or learning services? Explore this demonstration contact page.",
+            "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+            "imageAlt": "Students studying in a classroom",
+            "button": {
+                "text": "View Contact Information",
+                "url": "#contact-information",
+                "visible": true
+            }
+        },
+        "information": {
+            "title": "Contact Information",
+            "description": "Sample contact information provided for demonstration and website testing."
+        },
+        "form": {
+            "enabled": true,
+            "title": "How Can We Help You?",
+            "description": "Use this demo form to test enquiry fields and validation. No real institution receives these enquiries.",
+            "deliveryMethod": "mailto",
+            "recipientEmail": "contact@example.com",
+            "submitText": "Prepare Email",
+            "fields": {
+                "name": {
+                    "label": "Full Name",
+                    "required": true
+                },
+                "email": {
+                    "label": "Email Address",
+                    "required": true
+                },
+                "phone": {
+                    "label": "Phone Number",
+                    "required": false
+                },
+                "subject": {
+                    "label": "Enquiry Type",
+                    "required": true,
+                    "options": [
+                        "Admission Enquiry",
+                        "Course Information",
+                        "Academic Support",
+                        "General Enquiry",
+                        "Other"
+                    ]
+                },
+                "message": {
+                    "label": "Your Message",
+                    "required": true,
+                    "minLength": 10,
+                    "maxLength": 3000
+                }
+            }
+        },
+        "location": {
+            "enabled": true,
+            "title": "Find Our Demo Campus",
+            "description": "This is a fictional campus address for website demonstration purposes.",
+            "mapEnabled": false
+        },
+        "faq": {
+            "enabled": true,
+            "title": "Frequently Asked Questions",
+            "items": [
+                {
+                    "question": "Is Bright Future Academy a real school?",
+                    "answer": "No. Bright Future Academy is a fictional demonstration institution created for testing an educational website template."
+                },
+                {
+                    "question": "How can I enquire about admissions?",
+                    "answer": "You can explore the demo enquiry form. Actual admissions are not offered through this demonstration website."
+                },
+                {
+                    "question": "Can I visit the academy?",
+                    "answer": "No physical campus exists. The displayed location is fictional and used only for testing."
+                },
+                {
+                    "question": "Does the enquiry form send my message automatically?",
+                    "answer": "No. The form is configured for mailto, which requires an email application and manual sending. The demo recipient is not configured for real enquiries."
+                }
+            ]
+        }
+    },
+    "cta": {
+        "home": {
+            "enabled": true,
+            "title": "Discover a Brighter Learning Future",
+            "description": "Explore the educational programs and opportunities featured in our demo academy.",
+            "buttonText": "Explore Programs",
+            "buttonUrl": "/services/"
+        },
+        "services": {
+            "enabled": true,
+            "title": "Explore More Learning Opportunities",
+            "description": "Discover how Bright Future Academy presents educational services and student development programs.",
+            "buttonText": "Contact Our Academy",
+            "buttonUrl": "/contact/"
+        },
+        "about": {
+            "enabled": true,
+            "title": "Learn More About Bright Future Academy",
+            "description": "Explore our sample educational programs, team and learning approach.",
+            "buttonText": "View Programs",
+            "buttonUrl": "/services/"
+        },
+        "contact": {
+            "enabled": true,
+            "title": "Thank You for Exploring Our Demo",
+            "description": "This demonstration shows how schools can manage website content through one JSON file.",
+            "buttonText": "Back to Home",
+            "buttonUrl": "/"
+        }
+    },
+    "footer": {
+        "enabled": true,
+        "aboutText": "Bright Future Academy is a fictional educational institution used to demonstrate a modern, JSON-powered school website.",
+        "quickLinks": [
+            {
+                "name": "Home",
+                "url": "/"
+            },
+            {
+                "name": "Services",
+                "url": "/pages/services/"
+            },
+            {
+                "name": "About Us",
+                "url": "/pages/about/"
+            },
+            {
+                "name": "Contact",
+                "url": "/pages/contact/"
+            }
+        ],
+        "showContact": true,
+        "showSocialLinks": false,
+        "copyrightText": "Demo Website. All Rights Reserved.",
+        "showCurrentYear": true
     }
-  },
-  "footer": {
-    "enabled": true,
-    "aboutText": "Bright Future Academy is a fictional educational institution used to demonstrate a modern, JSON-powered school website.",
-    "quickLinks": [
-      {
-        "name": "Home",
-        "url": "/"
-      },
-      {
-        "name": "Services",
-        "url": "/pages/services/"
-      },
-      {
-        "name": "About Us",
-        "url": "/pages/about/"
-      },
-      {
-        "name": "Contact",
-        "url": "/pages/contact/"
-      }
-    ],
-    "showContact": true,
-    "showSocialLinks": false,
-    "copyrightText": "Demo Website. All Rights Reserved.",
-    "showCurrentYear": true
-  }
 }
